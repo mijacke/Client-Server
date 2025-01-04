@@ -21,8 +21,12 @@ typedef struct {
     int is_running;
 } GameState;
 
+// Funkcie na manipuláciu s hrou
 void initialize_game(GameState *state);
 void update_game(GameState *state);
 int check_collision(const GameState *state);
+void move_snake(GameState *state);
+void spawn_fruit(GameState *state);
 
 #endif
+

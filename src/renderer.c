@@ -8,21 +8,22 @@ void render_game(const GameState *state) {
     for (int i = 0; i < GRID_HEIGHT; i++) {
         for (int j = 0; j < GRID_WIDTH; j++) {
             if (i == 0 || i == GRID_HEIGHT - 1 || j == 0 || j == GRID_WIDTH - 1) {
-                mvprintw(i, j, "#");
+                mvprintw(i, j, "#");  // Steny
             }
         }
     }
 
     // Vykreslenie hadíka
     for (int i = 0; i < state->snake.length; i++) {
-        mvprintw(state->snake.body[i].x, state->snake.body[i].y, "O");
+        mvprintw(state->snake.body[i].x, state->snake.body[i].y, "O");  // Hadíková časť
     }
 
     // Vykreslenie ovocia
-    mvprintw(state->fruit.x, state->fruit.y, "@");
+    mvprintw(state->fruit.x, state->fruit.y, "@");  // Ovocie
 
     // Zobrazenie skóre
     mvprintw(GRID_HEIGHT, 0, "Score: %d", state->score);
 
-    refresh();
+    refresh();  // Aktualizuj obrazovku
 }
+
