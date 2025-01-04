@@ -1,0 +1,18 @@
+{
+    "configurations": [
+        {
+            "name": "WSL",
+            "includePath": [
+                "${workspaceFolder}/**",       // Cesty k projektovým súborom
+                "/usr/include",                // Základné systémové hlavičky
+                "/usr/include/x86_64-linux-gnu" // Hlavičky pre 64-bitový systém
+            ],
+            "defines": [],
+            "compilerPath": "/usr/bin/gcc",   // Cesta k prekladaču GCC
+            "cStandard": "c11",              // Štandard jazyka C
+            "cppStandard": "c++17",          // Štandard jazyka C++
+            "intelliSenseMode": "linux-gcc-x64" // IntelliSense mód pre GCC
+        }
+    ],
+    "version": 4
+}
