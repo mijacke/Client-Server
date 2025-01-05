@@ -1,32 +1,28 @@
 #ifndef GAME_H
 #define GAME_H
 
-#define GRID_WIDTH 20
-#define GRID_HEIGHT 10
+#include "snake.h"
+#include <ncurses.h>
+
+#define BOARD_HEIGHT 10 
+#define BOARD_WIDTH 30
 
 typedef struct {
-    int x, y;
-} Position;
+    int width;    
+    int height;   
+    Snake snake;  
+    int fruit_x;  
+    int fruit_y;  
+} Game;
 
-typedef struct {
-    Position body[100];
-    int length;
-    Position direction;
-} Snake;
 
-typedef struct {
-    Snake snake;
-    Position fruit;
-    int score;
-    int is_running;
-} GameState;
+void init_game(Game *game, int width, int height);
 
-// Funkcie na manipuláciu s hrou
-void initialize_game(GameState *state);
-void update_game(GameState *state);
-int check_collision(const GameState *state);
-void move_snake(GameState *state);
-void spawn_fruit(GameState *state);
+void generate_fruit(Game *game);
+
+int check_fruit_collision(Game *game);
+
+void draw_game(WINDOW *win, Game *game);
 
 #endif
 

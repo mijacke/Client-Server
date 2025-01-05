@@ -8,9 +8,11 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "/home/maros/snake/pos_snake_game/src/client.c" "CMakeFiles/snake_game.dir/src/client.c.o" "gcc" "CMakeFiles/snake_game.dir/src/client.c.o.d"
   "/home/maros/snake/pos_snake_game/src/game.c" "CMakeFiles/snake_game.dir/src/game.c.o" "gcc" "CMakeFiles/snake_game.dir/src/game.c.o.d"
   "/home/maros/snake/pos_snake_game/src/main.c" "CMakeFiles/snake_game.dir/src/main.c.o" "gcc" "CMakeFiles/snake_game.dir/src/main.c.o.d"
   "/home/maros/snake/pos_snake_game/src/renderer.c" "CMakeFiles/snake_game.dir/src/renderer.c.o" "gcc" "CMakeFiles/snake_game.dir/src/renderer.c.o.d"
+  "/home/maros/snake/pos_snake_game/src/server.c" "CMakeFiles/snake_game.dir/src/server.c.o" "gcc" "CMakeFiles/snake_game.dir/src/server.c.o.d"
   "" "snake_game" "gcc" "CMakeFiles/snake_game.dir/link.d"
   )
 

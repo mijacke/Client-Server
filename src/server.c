@@ -1,104 +1,93 @@
+#include "server.h"
+#include <pthread.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <pthread.h>
 #include <string.h>
 #include <unistd.h>
-#include "game.h"
+#include <sys/socket.h>
+#include <arpa/inet.h>
+#include <ncurses.h>
 
-// Počet klientov (hráčov)
-#define MAX_CLIENTS 2
-
-pthread_mutex_t game_lock;
-
-typedef struct {
-    int sockfd;
-    struct sockaddr_in address;
-    int player_id;
-} client_t;
-
-// Funkcia na spracovanie vstupu pre každého klienta (hráča)
-void* handle_client(void* arg) {
-    client_t* client = (client_t*)arg;
-    GameState state;
-    
-    // Inicializácia hry pre klienta
-    initialize_game(&state);
-
-    // Hra beží, kým klient nezastaví
-    while (state.is_running) {
-        // Môžeme pridať synchronizáciu, aby sa viacerí klienti neprekryli
-        pthread_mutex_lock(&game_lock);
-        update_game(&state);  // Aktualizuj stav hry
-        pthread_mutex_unlock(&game_lock);
-
-        // Tu môžeme implementovať prijímanie príkazov (napr. pohyb hadíka)
-        usleep(200000);  // Spomalenie hry, aby sa nezrýchlil pohyb hadíka
+void init_server(Server *server, int port) {
+    struct sockaddr_in server_addr;
+    server->socket = socket(AF_INET, SOCK_STREAM, 0);  // Vytvorenie socketu
+    if (server->socket < 0) {
+        perror("Nepodarilo sa vytvoriť socket");
+        exit(1);
     }
 
-    close(client->sockfd);
-    free(client);
+    server_addr.sin_family = AF_INET;
+    server_addr.sin_addr.s_addr = INADDR_ANY;
+    server_addr.sin_port = htons(port);  // Nastavenie portu pre server
+
+    if (bind(server->socket, (struct sockaddr *)&server_addr, sizeof(server_addr)) < 0) {
+        perror("Chyba pri bindovaní socketu");
+        exit(1);
+    }
+
+    if (listen(server->socket, 5) < 0) {
+        perror("Chyba pri počúvaní pripojení");
+        exit(1);
+    }
+    printf("Server počúva na porte %d...\n", port);
+}
+
+void *client_handler(void *client_socket) {
+    int socket = *((int *)client_socket);
+    char buffer[1024];
+
+    initscr();
+    noecho();
+    curs_set(FALSE);
+    WINDOW *win = newwin(BOARD_HEIGHT, BOARD_WIDTH, 0, 0);
+    keypad(win, TRUE);
+
+    Game game;
+    init_game(&game, BOARD_WIDTH, BOARD_HEIGHT); 
+
+    while (1) {
+        draw_game(win, &game);  // Kreslí herný stav
+        int n = recv(socket, buffer, sizeof(buffer), 0);  // Čítanie príkazov od klienta
+        if (n <= 0) break;  // Ak neprijmeme žiadne dáta, ukončíme hru
+
+        move_snake(&game.snake, buffer[0]);  // Pohyb hadíka na základe príkazu
+        if (check_fruit_collision(&game)) {
+            // Ak hadík zožral ovocie
+        }
+
+        if (check_collision(&game.snake, BOARD_WIDTH, BOARD_HEIGHT)) {
+            break;  // Kolízia s hranicami
+        }
+
+        usleep(200000);  // Pauza na pohyb
+    }
+
+    endwin();
+    close(socket);
+    free(client_socket);
     return NULL;
 }
 
-int main() {
-    int server_fd, client_fd;
-    struct sockaddr_in server_address, client_address;
-    socklen_t client_len = sizeof(client_address);
-    pthread_t threads[MAX_CLIENTS];
-
-    // Inicializácia mutexu pre synchronizáciu
-    pthread_mutex_init(&game_lock, NULL);
-
-    // Vytvorenie serverového socketu
-    if ((server_fd = socket(AF_INET, SOCK_STREAM, 0)) == -1) {
-        perror("Socket failed");
-        exit(EXIT_FAILURE);
-    }
-
-    server_address.sin_family = AF_INET;
-    server_address.sin_addr.s_addr = INADDR_ANY;
-    server_address.sin_port = htons(8080); // Port pre server
-
-    // Bindovanie socketu
-    if (bind(server_fd, (struct sockaddr*)&server_address, sizeof(server_address)) < 0) {
-        perror("Bind failed");
-        exit(EXIT_FAILURE);
-    }
-
-    // Počúvanie na pripojenie
-    if (listen(server_fd, MAX_CLIENTS) < 0) {
-        perror("Listen failed");
-        exit(EXIT_FAILURE);
-    }
-
-    printf("Server is listening on port 8080\n");
-
-    // Akceptovanie pripojení od klientov
-    for (int i = 0; i < MAX_CLIENTS; i++) {
-        client_fd = accept(server_fd, (struct sockaddr*)&client_address, &client_len);
-        if (client_fd < 0) {
-            perror("Accept failed");
+void start_game(Server *server) {
+    struct sockaddr_in client_addr;
+    socklen_t client_len = sizeof(client_addr);
+    while (1) {
+        int *client_socket = malloc(sizeof(int));  // Alokácia pamäte pre klienta
+        *client_socket = accept(server->socket, (struct sockaddr *)&client_addr, &client_len);  // Akceptovanie pripojenia
+        if (*client_socket < 0) {
+            perror("Chyba pri prijímaní pripojenia");
             continue;
         }
 
-        client_t* client = (client_t*)malloc(sizeof(client_t));
-        client->sockfd = client_fd;
-        client->address = client_address;
-        client->player_id = i;
-
-        // Vytvorenie nového vlákna pre každého klienta
-        pthread_create(&threads[i], NULL, handle_client, (void*)client);
+        // Vytvorenie nového vlákna pre každý pripojený klient
+        pthread_t tid;
+        if (pthread_create(&tid, NULL, client_handler, (void *)client_socket) != 0) {
+            perror("Chyba pri vytváraní vlákna");
+        }
     }
+}
 
-    // Počkajte, kým sa všetky vlákna dokončia
-    for (int i = 0; i < MAX_CLIENTS; i++) {
-        pthread_join(threads[i], NULL);
-    }
-
-    // Zatvorenie socketu
-    close(server_fd);
-    pthread_mutex_destroy(&game_lock);  // Zničenie mutexu
-
-    return 0;
+void close_server(Server *server) {
+    close(server->socket);  // Uzavretie socketu
 }
 

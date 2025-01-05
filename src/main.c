@@ -1,34 +1,34 @@
-#include "game.h"
-#include "renderer.h"
+#include "client.h"
+#include "server.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <pthread.h>
 #include <ncurses.h>
-#include <unistd.h>
+#include <string.h>
 
-int main() {
-    GameState state;
-    initialize_game(&state);
-
-    initscr();
-    curs_set(0); // Skrytie kurzora
-    noecho();
-    nodelay(stdscr, TRUE); // Nespomaľuje čakacie vstupy
-
-    while (state.is_running) {
-        render_game(&state); // Vykreslí stav hry
-
-        // Ovládanie smeru pomocou vstupu od používateľa
-        int ch = getch();
-        if (ch == 'w') state.snake.direction = (Position){-1, 0}; // Hore
-        if (ch == 's') state.snake.direction = (Position){1, 0};  // Dole
-        if (ch == 'a') state.snake.direction = (Position){0, -1}; // Doľava
-        if (ch == 'd') state.snake.direction = (Position){0, 1};  // Doprava
-        if (ch == 'q') state.is_running = 0; // Ukonči hru, ak stlačíš 'q'
-
-        update_game(&state); // Aktualizuje stav hry
-
-        usleep(200000); // Spomalenie (200ms medzi iteráciami)
+int main(int argc, char *argv[]) {
+    if (argc < 2) {
+        fprintf(stderr, "Použitie: %s <server|client>\n", argv[0]);
+        exit(1);
     }
 
+    if (strcmp(argv[1], "server") == 0) {
+        // Spustenie servera
+        Server server;
+        init_server(&server, 8080);  // Inicializuje server na porte 8080
+        start_game(&server);  // Začne hru
+        close_server(&server);  // Uzavrie server po skončení
+    } 
+    else if (strcmp(argv[1], "client") == 0) {
+        // Spustenie klienta
+        init_client("127.0.0.1", 8080);  // Pripojí sa na server s IP 127.0.0.1 a portom 8080
+        start_client();  // Začne hru pre klienta
+    } 
+    else {
+        fprintf(stderr, "Neplatný argument. Použite 'server' alebo 'client'.\n");
+        exit(1);
+    }
 
-    endwin();
     return 0;
 }
+
