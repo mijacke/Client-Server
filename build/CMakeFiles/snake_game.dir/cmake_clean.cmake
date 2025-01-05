@@ -10,6 +10,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/snake_game.dir/src/renderer.c.o.d"
   "CMakeFiles/snake_game.dir/src/server.c.o"
   "CMakeFiles/snake_game.dir/src/server.c.o.d"
+  "CMakeFiles/snake_game.dir/src/snake.c.o"
+  "CMakeFiles/snake_game.dir/src/snake.c.o.d"
   "snake_game"
   "snake_game.pdb"
 )

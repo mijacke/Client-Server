@@ -7,6 +7,7 @@ snake_game: \
   CMakeFiles/snake_game.dir/src/renderer.c.o \
   CMakeFiles/snake_game.dir/src/client.c.o \
   CMakeFiles/snake_game.dir/src/server.c.o \
+  CMakeFiles/snake_game.dir/src/snake.c.o \
   /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/libcurses.so \
   /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/libcurses.so \
   /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/libcurses.so \
@@ -50,6 +51,8 @@ CMakeFiles/snake_game.dir/src/renderer.c.o:
 CMakeFiles/snake_game.dir/src/client.c.o:
 
 CMakeFiles/snake_game.dir/src/server.c.o:
+
+CMakeFiles/snake_game.dir/src/snake.c.o:
 
 /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/libcurses.so:
 

@@ -249,6 +249,30 @@ src/server.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/snake_game.dir/build.make CMakeFiles/snake_game.dir/src/server.c.s
 .PHONY : src/server.c.s
 
+src/snake.o: src/snake.c.o
+.PHONY : src/snake.o
+
+# target to build an object file
+src/snake.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/snake_game.dir/build.make CMakeFiles/snake_game.dir/src/snake.c.o
+.PHONY : src/snake.c.o
+
+src/snake.i: src/snake.c.i
+.PHONY : src/snake.i
+
+# target to preprocess a source file
+src/snake.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/snake_game.dir/build.make CMakeFiles/snake_game.dir/src/snake.c.i
+.PHONY : src/snake.c.i
+
+src/snake.s: src/snake.c.s
+.PHONY : src/snake.s
+
+# target to generate assembly for a file
+src/snake.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/snake_game.dir/build.make CMakeFiles/snake_game.dir/src/snake.c.s
+.PHONY : src/snake.c.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -273,6 +297,9 @@ help:
 	@echo "... src/server.o"
 	@echo "... src/server.i"
 	@echo "... src/server.s"
+	@echo "... src/snake.o"
+	@echo "... src/snake.i"
+	@echo "... src/snake.s"
 .PHONY : help
 
 

@@ -7,6 +7,7 @@
 #include <sys/socket.h>
 #include <arpa/inet.h>
 #include <ncurses.h>
+#include "renderer.h"
 
 #define BOARD_WIDTH 30
 #define BOARD_HEIGHT 10
