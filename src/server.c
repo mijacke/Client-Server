@@ -175,4 +175,5 @@ void close_server(Server *server) {
         free(fruits);
         fruits = NULL;
     }
+
 }
