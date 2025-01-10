@@ -137,10 +137,13 @@ void *client_handler(void *args) {
     return NULL;
 }
 
-// Hlavná slučka pre server
+// Predpokladám, že sa nachádzate v sekcii, kde začína hra pre viacerých hráčov
+
 void start_game(Server *server) {
     struct sockaddr_in client_addr;
     socklen_t client_len = sizeof(client_addr);
+
+    int has_obstacles = get_game_mode() == 2;  // Rozhodne podľa výberu hráča
 
     while (1) {
         int client_socket = accept(server->socket, (struct sockaddr *)&client_addr, &client_len);
@@ -156,12 +159,16 @@ void start_game(Server *server) {
 
         pthread_t tid;
         pthread_create(&tid, NULL, client_handler, (void *)args);
-        server->active_players++;  // Zvyšuje počet aktívnych hráčov
+        server->active_players++;
+
+        // Generovanie herného sveta na základe voľby hráča
+        generate_game_world(&server->game, server->active_players, has_obstacles);
     }
 
     close(server->socket);
     printf("Server ukončil svoju činnosť.\n");
 }
+
 
 // Funkcia na uzavretie servera
 void close_server(Server *server) {
@@ -175,5 +182,4 @@ void close_server(Server *server) {
         free(fruits);
         fruits = NULL;
     }
-
 }

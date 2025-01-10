@@ -7,10 +7,10 @@
 
 #define MAX_PLAYERS 2  // Maximálny počet hráčov v hre
 
-// Definícia typu Fruit
+// Definícia štruktúry pre ovocie
 typedef struct {
-    int x;
-    int y;
+    int x;  // X pozícia ovocia
+    int y;  // Y pozícia ovocia
 } Fruit;
 
 // Zoznam hráčov
@@ -35,6 +35,9 @@ typedef struct {
     Server *server;          // Ukazovateľ na server
     int client_socket;       // Socket klienta
 } ClientArgs;
+
+// Deklarácia funkcie na získanie herného režimu
+int get_game_mode();  // Funkcia na získanie herného režimu
 
 void init_server(Server *server, int port, int game_mode, int game_time, int num_players);
 void *client_handler(void *client_socket);
