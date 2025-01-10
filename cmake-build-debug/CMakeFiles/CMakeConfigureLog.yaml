@@ -1,0 +1,619 @@
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineSystem.cmake:211 (message)"
+      - "CMakeLists.txt:4 (project)"
+    message: |
+      The system is: Windows - 10.0.26100 - AMD64
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:4 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: C:/Users/ronca/AppData/Local/Programs/CLion/bin/mingw/bin/gcc.exe 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      1
+      C:\\Users\\ronca\\AppData\\Local\\Programs\\CLion\\bin\\mingw\\bin/ld.exe: cannot open output file a.exe: Invalid argument
+      collect2.exe: error: ld returned 1 exit status
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:4 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: C:/Users/ronca/AppData/Local/Programs/CLion/bin/mingw/bin/gcc.exe 
+      Build flags: 
+      Id flags: -c 
+      
+      The output was:
+      1
+      Assembler messages:
+      Fatal error: can't create CMakeCCompilerId.o: Invalid argument
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:4 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: C:/Users/ronca/AppData/Local/Programs/CLion/bin/mingw/bin/gcc.exe 
+      Build flags: 
+      Id flags: -Aa 
+      
+      The output was:
+      1
+      <command-line>: error: missing '(' after predicate
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:4 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: C:/Users/ronca/AppData/Local/Programs/CLion/bin/mingw/bin/gcc.exe 
+      Build flags: 
+      Id flags: -D__CLASSIC_C__ 
+      
+      The output was:
+      1
+      C:\\Users\\ronca\\AppData\\Local\\Programs\\CLion\\bin\\mingw\\bin/ld.exe: cannot open output file a.exe: Invalid argument
+      collect2.exe: error: ld returned 1 exit status
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:4 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: C:/Users/ronca/AppData/Local/Programs/CLion/bin/mingw/bin/gcc.exe 
+      Build flags: 
+      Id flags: --target=arm-arm-none-eabi;-mcpu=cortex-m3 
+      
+      The output was:
+      1
+      gcc.exe: warning: '-mcpu=' is deprecated; use '-mtune=' or '-march=' instead
+      gcc.exe: error: unrecognized command-line option '--target=arm-arm-none-eabi'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:4 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: C:/Users/ronca/AppData/Local/Programs/CLion/bin/mingw/bin/gcc.exe 
+      Build flags: 
+      Id flags: -c;-I__does_not_exist__ 
+      
+      The output was:
+      1
+      Assembler messages:
+      Fatal error: can't create CMakeCCompilerId.o: Invalid argument
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:4 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: C:/Users/ronca/AppData/Local/Programs/CLion/bin/mingw/bin/gcc.exe 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      1
+      C:\\Users\\ronca\\AppData\\Local\\Programs\\CLion\\bin\\mingw\\bin/ld.exe: cannot open output file a.exe: Invalid argument
+      collect2.exe: error: ld returned 1 exit status
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:4 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: C:/Users/ronca/AppData/Local/Programs/CLion/bin/mingw/bin/gcc.exe 
+      Build flags: 
+      Id flags: -c 
+      
+      The output was:
+      1
+      Assembler messages:
+      Fatal error: can't create CMakeCCompilerId.o: Invalid argument
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:4 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: C:/Users/ronca/AppData/Local/Programs/CLion/bin/mingw/bin/gcc.exe 
+      Build flags: 
+      Id flags: -Aa 
+      
+      The output was:
+      1
+      <command-line>: error: missing '(' after predicate
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:4 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: C:/Users/ronca/AppData/Local/Programs/CLion/bin/mingw/bin/gcc.exe 
+      Build flags: 
+      Id flags: -D__CLASSIC_C__ 
+      
+      The output was:
+      1
+      C:\\Users\\ronca\\AppData\\Local\\Programs\\CLion\\bin\\mingw\\bin/ld.exe: cannot open output file a.exe: Invalid argument
+      collect2.exe: error: ld returned 1 exit status
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:4 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: C:/Users/ronca/AppData/Local/Programs/CLion/bin/mingw/bin/gcc.exe 
+      Build flags: 
+      Id flags: --target=arm-arm-none-eabi;-mcpu=cortex-m3 
+      
+      The output was:
+      1
+      gcc.exe: warning: '-mcpu=' is deprecated; use '-mtune=' or '-march=' instead
+      gcc.exe: error: unrecognized command-line option '--target=arm-arm-none-eabi'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:4 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: C:/Users/ronca/AppData/Local/Programs/CLion/bin/mingw/bin/gcc.exe 
+      Build flags: 
+      Id flags: -c;-I__does_not_exist__ 
+      
+      The output was:
+      1
+      Assembler messages:
+      Fatal error: can't create CMakeCCompilerId.o: Invalid argument
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake:1117 (message)"
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake:86 (CMAKE_DETERMINE_COMPILER_ID_VENDOR)"
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:4 (project)"
+    message: |
+      Checking whether the C compiler is IAR using "" did not match "IAR .+ Compiler":
+      gcc.exe: fatal error: no input files
+      compilation terminated.
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake:1117 (message)"
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake:86 (CMAKE_DETERMINE_COMPILER_ID_VENDOR)"
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:4 (project)"
+    message: |
+      Checking whether the C compiler is IAR using "" did not match "IAR .+ Compiler":
+      gcc.exe: fatal error: no input files
+      compilation terminated.
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCompilerABI.cmake:57 (try_compile)"
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:4 (project)"
+    checks:
+      - "Detecting C compiler ABI info"
+    directories:
+      source: "//wsl.localhost/Ubuntu/home/maros/snake/pos_snake_game/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-et4uaf"
+      binary: "//wsl.localhost/Ubuntu/home/maros/snake/pos_snake_game/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-et4uaf"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: ""
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "CMAKE_C_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: '//wsl.localhost/Ubuntu/home/maros/snake/pos_snake_game/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-et4uaf'
+        
+        Run Build Command(s): C:/Users/ronca/AppData/Local/Programs/CLion/bin/ninja/win/x64/ninja.exe -v cmTC_9bafb
+        [1/2] C:\\Users\\ronca\\AppData\\Local\\Programs\\CLion\\bin\\mingw\\bin\\gcc.exe    -o CMakeFiles\\cmTC_9bafb.dir\\CMakeCCompilerABI.c.obj -c C:\\Users\\ronca\\AppData\\Local\\Programs\\CLion\\bin\\cmake\\win\\x64\\share\\cmake-3.27\\Modules\\CMakeCCompilerABI.c
+        FAILED: CMakeFiles/cmTC_9bafb.dir/CMakeCCompilerABI.c.obj 
+        C:\\Users\\ronca\\AppData\\Local\\Programs\\CLion\\bin\\mingw\\bin\\gcc.exe    -o CMakeFiles\\cmTC_9bafb.dir\\CMakeCCompilerABI.c.obj -c C:\\Users\\ronca\\AppData\\Local\\Programs\\CLion\\bin\\cmake\\win\\x64\\share\\cmake-3.27\\Modules\\CMakeCCompilerABI.c
+        Assembler messages:
+        Fatal error: can't create CMakeFiles\\cmTC_9bafb.dir\\CMakeCCompilerABI.c.obj: Invalid argument
+        ninja: build stopped: subcommand failed.
+        
+      exitCode: 1
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeTestCCompiler.cmake:56 (try_compile)"
+      - "CMakeLists.txt:4 (project)"
+    checks:
+      - "Check for working C compiler: C:/Users/ronca/AppData/Local/Programs/CLion/bin/mingw/bin/gcc.exe"
+    directories:
+      source: "//wsl.localhost/Ubuntu/home/maros/snake/pos_snake_game/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-t49fqb"
+      binary: "//wsl.localhost/Ubuntu/home/maros/snake/pos_snake_game/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-t49fqb"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: ""
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "CMAKE_C_COMPILER_WORKS"
+      cached: true
+      stdout: |
+        Change Dir: '//wsl.localhost/Ubuntu/home/maros/snake/pos_snake_game/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-t49fqb'
+        
+        Run Build Command(s): C:/Users/ronca/AppData/Local/Programs/CLion/bin/ninja/win/x64/ninja.exe -v cmTC_9fd57
+        ninja: error: '//wsl.localhost/Ubuntu/home/maros/snake/pos_snake_game/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-t49fqb/testCCompiler.c', needed by 'CMakeFiles/cmTC_9fd57.dir/testCCompiler.c.obj', missing and no known rule to make it
+        
+      exitCode: 1
+...
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:4 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: C:/Users/ronca/AppData/Local/Programs/CLion/bin/mingw/bin/gcc.exe 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      1
+      C:\\Users\\ronca\\AppData\\Local\\Programs\\CLion\\bin\\mingw\\bin/ld.exe: cannot open output file a.exe: Invalid argument
+      collect2.exe: error: ld returned 1 exit status
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:4 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: C:/Users/ronca/AppData/Local/Programs/CLion/bin/mingw/bin/gcc.exe 
+      Build flags: 
+      Id flags: -c 
+      
+      The output was:
+      1
+      Assembler messages:
+      Fatal error: can't create CMakeCCompilerId.o: Invalid argument
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:4 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: C:/Users/ronca/AppData/Local/Programs/CLion/bin/mingw/bin/gcc.exe 
+      Build flags: 
+      Id flags: -Aa 
+      
+      The output was:
+      1
+      <command-line>: error: missing '(' after predicate
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:4 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: C:/Users/ronca/AppData/Local/Programs/CLion/bin/mingw/bin/gcc.exe 
+      Build flags: 
+      Id flags: -D__CLASSIC_C__ 
+      
+      The output was:
+      1
+      C:\\Users\\ronca\\AppData\\Local\\Programs\\CLion\\bin\\mingw\\bin/ld.exe: cannot open output file a.exe: Invalid argument
+      collect2.exe: error: ld returned 1 exit status
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:4 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: C:/Users/ronca/AppData/Local/Programs/CLion/bin/mingw/bin/gcc.exe 
+      Build flags: 
+      Id flags: --target=arm-arm-none-eabi;-mcpu=cortex-m3 
+      
+      The output was:
+      1
+      gcc.exe: warning: '-mcpu=' is deprecated; use '-mtune=' or '-march=' instead
+      gcc.exe: error: unrecognized command-line option '--target=arm-arm-none-eabi'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:4 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: C:/Users/ronca/AppData/Local/Programs/CLion/bin/mingw/bin/gcc.exe 
+      Build flags: 
+      Id flags: -c;-I__does_not_exist__ 
+      
+      The output was:
+      1
+      Assembler messages:
+      Fatal error: can't create CMakeCCompilerId.o: Invalid argument
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:4 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: C:/Users/ronca/AppData/Local/Programs/CLion/bin/mingw/bin/gcc.exe 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      1
+      C:\\Users\\ronca\\AppData\\Local\\Programs\\CLion\\bin\\mingw\\bin/ld.exe: cannot open output file a.exe: Invalid argument
+      collect2.exe: error: ld returned 1 exit status
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:4 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: C:/Users/ronca/AppData/Local/Programs/CLion/bin/mingw/bin/gcc.exe 
+      Build flags: 
+      Id flags: -c 
+      
+      The output was:
+      1
+      Assembler messages:
+      Fatal error: can't create CMakeCCompilerId.o: Invalid argument
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:4 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: C:/Users/ronca/AppData/Local/Programs/CLion/bin/mingw/bin/gcc.exe 
+      Build flags: 
+      Id flags: -Aa 
+      
+      The output was:
+      1
+      <command-line>: error: missing '(' after predicate
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:4 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: C:/Users/ronca/AppData/Local/Programs/CLion/bin/mingw/bin/gcc.exe 
+      Build flags: 
+      Id flags: -D__CLASSIC_C__ 
+      
+      The output was:
+      1
+      C:\\Users\\ronca\\AppData\\Local\\Programs\\CLion\\bin\\mingw\\bin/ld.exe: cannot open output file a.exe: Invalid argument
+      collect2.exe: error: ld returned 1 exit status
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:4 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: C:/Users/ronca/AppData/Local/Programs/CLion/bin/mingw/bin/gcc.exe 
+      Build flags: 
+      Id flags: --target=arm-arm-none-eabi;-mcpu=cortex-m3 
+      
+      The output was:
+      1
+      gcc.exe: warning: '-mcpu=' is deprecated; use '-mtune=' or '-march=' instead
+      gcc.exe: error: unrecognized command-line option '--target=arm-arm-none-eabi'
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:4 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: C:/Users/ronca/AppData/Local/Programs/CLion/bin/mingw/bin/gcc.exe 
+      Build flags: 
+      Id flags: -c;-I__does_not_exist__ 
+      
+      The output was:
+      1
+      Assembler messages:
+      Fatal error: can't create CMakeCCompilerId.o: Invalid argument
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake:1117 (message)"
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake:86 (CMAKE_DETERMINE_COMPILER_ID_VENDOR)"
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:4 (project)"
+    message: |
+      Checking whether the C compiler is IAR using "" did not match "IAR .+ Compiler":
+      gcc.exe: fatal error: no input files
+      compilation terminated.
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake:1117 (message)"
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCompilerId.cmake:86 (CMAKE_DETERMINE_COMPILER_ID_VENDOR)"
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:4 (project)"
+    message: |
+      Checking whether the C compiler is IAR using "" did not match "IAR .+ Compiler":
+      gcc.exe: fatal error: no input files
+      compilation terminated.
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeDetermineCompilerABI.cmake:57 (try_compile)"
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:4 (project)"
+    checks:
+      - "Detecting C compiler ABI info"
+    directories:
+      source: "//wsl.localhost/Ubuntu/home/maros/snake/pos_snake_game/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-29k4gy"
+      binary: "//wsl.localhost/Ubuntu/home/maros/snake/pos_snake_game/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-29k4gy"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: ""
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "CMAKE_C_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: '//wsl.localhost/Ubuntu/home/maros/snake/pos_snake_game/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-29k4gy'
+        
+        Run Build Command(s): C:/Users/ronca/AppData/Local/Programs/CLion/bin/ninja/win/x64/ninja.exe -v cmTC_4ee59
+        [1/2] C:\\Users\\ronca\\AppData\\Local\\Programs\\CLion\\bin\\mingw\\bin\\gcc.exe    -o CMakeFiles\\cmTC_4ee59.dir\\CMakeCCompilerABI.c.obj -c C:\\Users\\ronca\\AppData\\Local\\Programs\\CLion\\bin\\cmake\\win\\x64\\share\\cmake-3.27\\Modules\\CMakeCCompilerABI.c
+        FAILED: CMakeFiles/cmTC_4ee59.dir/CMakeCCompilerABI.c.obj 
+        C:\\Users\\ronca\\AppData\\Local\\Programs\\CLion\\bin\\mingw\\bin\\gcc.exe    -o CMakeFiles\\cmTC_4ee59.dir\\CMakeCCompilerABI.c.obj -c C:\\Users\\ronca\\AppData\\Local\\Programs\\CLion\\bin\\cmake\\win\\x64\\share\\cmake-3.27\\Modules\\CMakeCCompilerABI.c
+        Assembler messages:
+        Fatal error: can't create CMakeFiles\\cmTC_4ee59.dir\\CMakeCCompilerABI.c.obj: Invalid argument
+        ninja: build stopped: subcommand failed.
+        
+      exitCode: 1
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Users/ronca/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.27/Modules/CMakeTestCCompiler.cmake:56 (try_compile)"
+      - "CMakeLists.txt:4 (project)"
+    checks:
+      - "Check for working C compiler: C:/Users/ronca/AppData/Local/Programs/CLion/bin/mingw/bin/gcc.exe"
+    directories:
+      source: "//wsl.localhost/Ubuntu/home/maros/snake/pos_snake_game/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-j06wna"
+      binary: "//wsl.localhost/Ubuntu/home/maros/snake/pos_snake_game/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-j06wna"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: ""
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "CMAKE_C_COMPILER_WORKS"
+      cached: true
+      stdout: |
+        Change Dir: '//wsl.localhost/Ubuntu/home/maros/snake/pos_snake_game/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-j06wna'
+        
+        Run Build Command(s): C:/Users/ronca/AppData/Local/Programs/CLion/bin/ninja/win/x64/ninja.exe -v cmTC_c2263
+        ninja: error: '//wsl.localhost/Ubuntu/home/maros/snake/pos_snake_game/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-j06wna/testCCompiler.c', needed by 'CMakeFiles/cmTC_c2263.dir/testCCompiler.c.obj', missing and no known rule to make it
+        
+      exitCode: 1
+...

@@ -1,7 +1,6 @@
-CMakeFiles/snake_game.dir/src/game.c.o: \
- /home/maros/snake/pos_snake_game/src/game.c /usr/include/stdc-predef.h \
- /home/maros/snake/pos_snake_game/src/game.h \
- /home/maros/snake/pos_snake_game/src/snake.h /usr/include/curses.h \
+CMakeFiles/snake_game.dir/src/game.c.o: /home/mario/snake_game/src/game.c \
+ /usr/include/stdc-predef.h /home/mario/snake_game/src/game.h \
+ /home/mario/snake_game/src/snake.h /usr/include/curses.h \
  /usr/include/ncurses_dll.h \
  /usr/lib/gcc/x86_64-linux-gnu/13/include/stdint.h /usr/include/stdint.h \
  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \

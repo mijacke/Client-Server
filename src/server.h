@@ -1,21 +1,44 @@
 #ifndef SERVER_H
 #define SERVER_H
 
-#include "game.h"
+#include "game.h"  // Uistíme sa, že použijeme správny typ pre `Game`
+#include <time.h>
 #include <ncurses.h>
 
+#define MAX_PLAYERS 2  // Maximálny počet hráčov v hre
+
+// Definícia typu Fruit
 typedef struct {
-    int socket;  
-    Game game;   
+    int x;
+    int y;
+} Fruit;
+
+// Zoznam hráčov
+typedef struct {
+    Snake snake;
+    int client_socket;
+    int active;  // Stav hráča (aktívny alebo neaktívny)
+} Player;
+
+// Struktúra servera
+typedef struct {
+    int socket;                // Socket servera
+    Game game;                 // Stav hry
+    int game_mode;             // 0 = štandardný, 1 = časový
+    int game_time;             // Časový limit pre hru
+    time_t start_time;         // Čas začiatku hry
+    int active_players;        // Počet aktívnych hráčov
+    time_t last_activity_time; // Čas poslednej aktivity
 } Server;
 
-void init_server(Server *server, int port);
+typedef struct {
+    Server *server;          // Ukazovateľ na server
+    int client_socket;       // Socket klienta
+} ClientArgs;
 
+void init_server(Server *server, int port, int game_mode, int game_time, int num_players);
 void *client_handler(void *client_socket);
-
 void start_game(Server *server);
-
 void close_server(Server *server);
 
 #endif
-
