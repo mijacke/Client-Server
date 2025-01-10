@@ -14,7 +14,6 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/maros/snake/pos_snake_game/src/renderer.c" "CMakeFiles/snake_game.dir/src/renderer.c.o" "gcc" "CMakeFiles/snake_game.dir/src/renderer.c.o.d"
   "/home/maros/snake/pos_snake_game/src/server.c" "CMakeFiles/snake_game.dir/src/server.c.o" "gcc" "CMakeFiles/snake_game.dir/src/server.c.o.d"
   "/home/maros/snake/pos_snake_game/src/snake.c" "CMakeFiles/snake_game.dir/src/snake.c.o" "gcc" "CMakeFiles/snake_game.dir/src/snake.c.o.d"
-  "" "snake_game" "gcc" "CMakeFiles/snake_game.dir/link.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

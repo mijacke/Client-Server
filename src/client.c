@@ -99,6 +99,8 @@ void start_client() {
                     break;
                 case 'q':
                     goto end;
+
+
             }
 
             // Posielanie príkazov serveru

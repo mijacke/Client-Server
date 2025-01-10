@@ -175,7 +175,6 @@ snake_game: CMakeFiles/snake_game.dir/src/client.c.o
 snake_game: CMakeFiles/snake_game.dir/src/server.c.o
 snake_game: CMakeFiles/snake_game.dir/src/snake.c.o
 snake_game: CMakeFiles/snake_game.dir/build.make
-snake_game: CMakeFiles/snake_game.dir/compiler_depend.ts
 snake_game: /usr/lib/x86_64-linux-gnu/libcurses.so
 snake_game: /usr/lib/x86_64-linux-gnu/libform.so
 snake_game: CMakeFiles/snake_game.dir/link.txt
