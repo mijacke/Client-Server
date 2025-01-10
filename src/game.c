@@ -15,11 +15,11 @@ void generate_fruit(Game *game) {
 }
 
 int check_fruit_collision(Game *game) {
-    if (game->snake.x == game->fruit_x && game->snake.y == game->fruit_y) {
-        generate_fruit(game); 
-        return 1;  
+    if (game->snake.x[0] == game->fruit_x && game->snake.y[0] == game->fruit_y) {
+        generate_fruit(game);  // Vygeneruje nové ovocie
+        return 1;  // Kolízia s ovocím
     }
-    return 0;  
+    return 0;  // Bez kolízie
 }
 
 void draw_game(WINDOW *win, Game *game) {
