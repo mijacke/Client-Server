@@ -1,3 +1,0 @@
-/home/maros/snake/pos_snake_game/CMakeFiles/snake_game.dir
-/home/maros/snake/pos_snake_game/CMakeFiles/edit_cache.dir
-/home/maros/snake/pos_snake_game/CMakeFiles/rebuild_cache.dir

@@ -41,7 +41,7 @@ void init_server(Server *server, int port, int game_mode, int game_time, int num
 void *client_handler(void *client_socket);
 void start_game(Server *server, int has_obstacles);
 void close_server(Server *server);
-int check_collision(Snake *snake, Player *players, int num_players, int width, int height);
+int check_collision(Snake *snake, Player *players, int num_players, int width, int height, Game *game);
 
 
 #endif

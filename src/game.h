@@ -8,6 +8,11 @@
 #define BOARD_WIDTH 30
 #define MAX_OBSTACLES 5
 
+typedef struct {
+    int x;
+    int y;
+} Obstacle;
+
 // Štruktúra pre herný svet
 typedef struct {
     int width;              // Šírka hracej plochy
@@ -18,16 +23,15 @@ typedef struct {
     int num_fruits;         // Počet ovocia
     int num_obstacles;      // Počet prekážok
     int score;              // Skóre
-    struct {
-        int x, y;           // Pozícia prekážky
-    } obstacles[MAX_OBSTACLES]; // Pole prekážok
+    Obstacle *obstacles; // Dynamické pole prekážok
 } Game;
 
 void init_game(Game *game, int width, int height, int num_players, int has_obstacles);
 void generate_fruit(Game *game, int num_players);
 void generate_game_world(Game *game, int num_players, int has_obstacles);
 void generate_obstacles(Game *game);
-int check_fruit_collision(Game *game);
 void draw_game(WINDOW *win, Game *game);
+void load_obstacles_from_file(Game *game, const char *filename);
+int is_valid_position(Game *game, int x, int y);
 
 #endif

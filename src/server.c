@@ -96,17 +96,22 @@ void *client_handler(void *args) {
     init_snake(snake, BOARD_WIDTH / 2, BOARD_HEIGHT / 2);
 
     // Odošleme informácie o hre
-    int time_to_send = (server->game_mode == 1) ? server->game_time : 0;
+    int time_to_send = (server->game_mode == 2) ? server->game_time : 0; // Ak je režim 2 (časový), pošleme čas
     send(client_socket, &time_to_send, sizeof(time_to_send), 0);
     send(client_socket, &server->start_time, sizeof(server->start_time), 0);
 
+    // Odoslanie prekážok klientovi
+    if (server->game.num_obstacles > 0) {
+        send(client_socket, &server->game.num_obstacles, sizeof(server->game.num_obstacles), 0);
+        send(client_socket, server->game.obstacles, server->game.num_obstacles * sizeof(Obstacle), 0);
+    } else {
+        int no_obstacles = 0;
+        send(client_socket, &no_obstacles, sizeof(no_obstacles), 0);
+    }
+
     printf("Generujem ovocie pre počet hráčov: %d\n", server->active_players);
     generate_fruit(&server->game, server->active_players);
-
     printf("Ovocie vygenerované.\n");
-
-    //generate_obstacles(&server->game);
-
 
     // Hlavná herná slučka
     while (1) {
@@ -124,28 +129,10 @@ void *client_handler(void *args) {
         move_snake(snake, buffer[0], 0);
 
         // **Kontrola kolízie**
-        if (check_collision(snake, players, server->active_players, BOARD_WIDTH, BOARD_HEIGHT)) {
+        if (check_collision(snake, players, server->active_players, BOARD_WIDTH, BOARD_HEIGHT, &server->game)) {
             printf("Hráč %d narazil. Ukončujem hru pre hráča.\n", player_index);
             break;  // Ukonči hru pre hráča pri kolízii
         }
-
-        // Posielanie pozícií všetkých hadíkov všetkým klientom
-        for (int i = 0; i < server->active_players; i++) {
-            if (players[i].active && players[i].client_socket != client_socket) {
-                send(players[i].client_socket, &snake->x[0], sizeof(snake->x[0]), 0);
-                send(players[i].client_socket, &snake->y[0], sizeof(snake->y[0]), 0);
-            }
-        }
-
-        // Kontrola, či hadík zožral ovocie
-        for (int i = 0; i < server->active_players; i++) {
-            if (snake->x[0] == fruits[i].x && snake->y[0] == fruits[i].y) {
-                generate_fruit(&server->game, server->active_players);  // Generovanie nového ovocia
-                break;
-            }
-        }
-
-
 
         usleep(200000);
     }
@@ -169,7 +156,15 @@ void start_game(Server *server, int has_obstacles) {
     while (1) {
         time_t current_time = time(NULL);
 
-        if (server->game_mode == 0 && server->active_players == 0) {
+        // **Časový režim (s prekážkami)**
+        if (server->game_mode == 2) {
+            if (difftime(current_time, server->start_time) >= server->game_time) {
+                printf("Koniec hry: Vypršal časový limit %d sekúnd.\n", server->game_time);
+                break;
+            }
+        }
+
+        if (server->game_mode == 1 && server->active_players == 0) {
             if (difftime(current_time, server->last_activity_time) >= 10) {
                 printf("Hra ukončená: Žiadny hráč sa nepripojil počas 10 sekúnd.\n");
                 break;
@@ -187,6 +182,16 @@ void start_game(Server *server, int has_obstacles) {
         generate_fruit(&server->game, server->active_players);
         generate_obstacles(&server->game);
         server->last_activity_time = current_time;
+
+        // Generovanie prekážok na serveri
+        if (has_obstacles) {
+            generate_obstacles(&server->game);
+            printf("Generované prekážky:\n");
+            for (int i = 0; i < server->game.num_obstacles; i++) {
+                printf("Prekážka %d: (%d, %d)\n", i, server->game.obstacles[i].x, server->game.obstacles[i].y);
+            }
+        }
+
 
         ClientArgs *args = malloc(sizeof(ClientArgs));
         args->server = server;
@@ -214,20 +219,15 @@ void close_server(Server *server) {
     }
 }
 
-int check_collision(Snake *snake, Player *players, int num_players, int width, int height) {
-    // Debug: Tlač súradníc hlavy hadíka
-    //printf("DEBUG: Kontrola kolízie - Hlava hadíka: (%d, %d), Dĺžka: %d\n", snake->x[0], snake->y[0], snake->length);
-
+int check_collision(Snake *snake, Player *players, int num_players, int width, int height, Game *game) {
     // Kolízia s hranicami
     if (snake->x[0] < 0 || snake->x[0] >= width || snake->y[0] < 0 || snake->y[0] >= height) {
-        //printf("DEBUG: Kolízia s hranicami na pozícii (%d, %d).\n", snake->x[0], snake->y[0]);
         return 1;  // Kolízia s hranicami
     }
 
     // Kolízia so sebou samým
     for (int i = 1; i < snake->length; i++) {
         if (snake->x[0] == snake->x[i] && snake->y[0] == snake->y[i]) {
-            //printf("DEBUG: Kolízia so sebou na pozícii (%d, %d). Článok index: %d\n", snake->x[i], snake->y[i], i);
             return 1;  // Kolízia so sebou samým
         }
     }
@@ -239,14 +239,18 @@ int check_collision(Snake *snake, Player *players, int num_players, int width, i
 
         for (int j = 0; j < other_snake->length; j++) {
             if (snake->x[0] == other_snake->x[j] && snake->y[0] == other_snake->y[j]) {
-                //printf("DEBUG: Kolízia s iným hadíkom (%d, %d). Hráč: %d, Článok index: %d\n",
-                //       other_snake->x[j], other_snake->y[j], i, j);
                 return 1;  // Kolízia s iným hadíkom
             }
         }
     }
 
+    // Kolízia s prekážkami
+    for (int i = 0; i < game->num_obstacles; i++) {
+        if (snake->x[0] == game->obstacles[i].x && snake->y[0] == game->obstacles[i].y) {
+            return 1;  // Kolízia s prekážkou
+        }
+    }
+
     // Žiadna kolízia
-    //printf("DEBUG: Žiadna kolízia detegovaná.\n");
     return 0;
 }

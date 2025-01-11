@@ -54,8 +54,25 @@ void start_client() {
     recv(sock, &start_time, sizeof(start_time), 0);
     printf("Prijatý čas hry: %d sekúnd, začiatok hry: %ld\n", server_time, start_time);
 
-    if (server_time == 0) {
-        printf("Hra je v štandardnom režime. Čas sa ignoruje.\n");
+    // Prijatie počtu prekážok
+    int num_obstacles;
+    recv(sock, &num_obstacles, sizeof(num_obstacles), 0);
+
+    // Ak nie sú prekážky, alokácia nebude potrebná
+    Obstacle *obstacles = NULL;
+    if (num_obstacles > 0) {
+        obstacles = malloc(num_obstacles * sizeof(Obstacle));
+        if (!obstacles) {
+            perror("Chyba pri alokácii pamäte pre prekážky");
+            exit(1);
+        }
+        recv(sock, obstacles, num_obstacles * sizeof(Obstacle), 0);
+        printf("Prijaté prekážky:\n");
+        for (int i = 0; i < num_obstacles; i++) {
+            printf("Prekážka %d: (%d, %d)\n", i, obstacles[i].x, obstacles[i].y);
+        }
+    } else {
+        printf("Žiadne prekážky.\n");
     }
 
     initscr();
@@ -80,14 +97,14 @@ void start_client() {
             time_t current_time = time(NULL);
             int remaining_time = (server_time > 0) ? server_time - difftime(current_time, start_time) : INT64_MAX;
 
-            if (server_time == INT16_MAX) {
-                mvprintw(BOARD_HEIGHT + 1, 0, "Štandardný režim: nekonečný čas.");
+            if (server_time == 0) {
+                mvprintw(BOARD_HEIGHT + 1, 0, "Standardny rezim: nekonecny cas.");
             } else if (remaining_time <= 0) {
-                mvprintw(BOARD_HEIGHT + 1, 0, "Čas vypršal! Koniec hry.");
+                mvprintw(BOARD_HEIGHT + 1, 0, "Cas vyprsal! Koniec hry.");
                 refresh();
                 break;
             } else {
-                mvprintw(BOARD_HEIGHT + 1, 0, "Zostávajúci čas: %d sekúnd", remaining_time);
+                mvprintw(BOARD_HEIGHT + 1, 0, "Zostavajuci cas: %d sekund", remaining_time);
             }
 
             mvprintw(BOARD_HEIGHT + 2, 0, "Skóre: %d", score);
@@ -96,6 +113,13 @@ void start_client() {
             draw_board(win, snake.x[0], snake.y[0], fruit_x, fruit_y);
             draw_snake(win, &snake);
 
+            // Vykreslenie prekážok
+            if(num_obstacles > 0) {
+                for (int i = 0; i < num_obstacles; i++) {
+                    mvwaddch(win, obstacles[i].y, obstacles[i].x, '#');
+                    mvprintw(BOARD_HEIGHT + 3 + i, 0, "Prekážka %d: (%d, %d)", i, obstacles[i].x, obstacles[i].y);  // Debug výpis
+                }
+            }
 
             move_snake(&snake, current_direction, grow);
 
@@ -107,6 +131,8 @@ void start_client() {
             } else {
                 grow = 0;
             }
+
+            wrefresh(win); // Aktualizácia okna po vykreslení všetkých prvkov
         } else {
             mvprintw(BOARD_HEIGHT + 2, 0, "Hra pozastavená. Stlačte 'p' na pokračovanie.");
             refresh();
