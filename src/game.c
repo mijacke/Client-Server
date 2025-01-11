@@ -22,21 +22,25 @@ void init_game(Game *game, int width, int height, int num_players, int has_obsta
 
     if (has_obstacles) {
         load_obstacles_from_file(game, "../src/obstacles.txt");
+        if (game->num_obstacles > 0) {
+            printf("Načítané prekážky zo súboru.\n");
+        } else {
+            printf("Súbor s prekážkami bol prázdny. Generujem nové prekážky.\n");
+            generate_obstacles(game);
+        }
     } else {
         game->num_obstacles = 0;
     }
-
-    generate_game_world(game, num_players, has_obstacles);  // Generovanie sveta bez prekážok
 }
 
 void generate_game_world(Game *game, int num_players, int has_obstacles) {
     game->num_fruits = num_players;
     generate_fruit(game, num_players);  // Vygeneruje ovocie
-    if (has_obstacles) {
+
+    // Generovanie prekážok len ak ešte neexistujú
+    if (has_obstacles && game->num_obstacles == 0) {
         game->num_obstacles = rand() % MAX_OBSTACLES + 1;  // Generovanie náhodného počtu prekážok
         generate_obstacles(game);  // Generovanie prekážok
-    } else {
-        game->num_obstacles = 0;  // Bez prekážok
     }
 }
 
@@ -107,12 +111,16 @@ void load_obstacles_from_file(Game *game, const char *filename) {
 
     int count = 0;
     while (fscanf(file, "%d %d", &game->obstacles[count].x, &game->obstacles[count].y) == 2) {
-        printf("Načítaná prekážka: (%d, %d)\n", game->obstacles[count].x, game->obstacles[count].y);
         count++;
-        if (count >= MAX_OBSTACLES) break; // Zabráň prekročeniu limitu
+        if (count >= MAX_OBSTACLES) break; // Zabráni prekročeniu limitu
     }
     fclose(file);
-    game->num_obstacles = count; // Aktualizuj počet načítaných prekážok
+    game->num_obstacles = count;
+
+    printf("Načítané prekážky zo súboru:\n");
+    for (int i = 0; i < game->num_obstacles; i++) {
+        printf("Prekážka %d: (%d, %d)\n", i, game->obstacles[i].x, game->obstacles[i].y);
+    }
 }
 
 void draw_game(WINDOW *win, Game *game) {

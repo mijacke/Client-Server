@@ -153,6 +153,20 @@ void start_game(Server *server, int has_obstacles) {
     // Pred spustením hry inicializujte štruktúru hry
     init_game(&server->game, BOARD_WIDTH, BOARD_HEIGHT, server->active_players, has_obstacles);
 
+    if (has_obstacles && server->game.num_obstacles > 0) {
+        printf("Načítané prekážky zo súboru:\n");
+        for (int i = 0; i < server->game.num_obstacles; i++) {
+            printf("Prekážka %d: (%d, %d)\n", i, server->game.obstacles[i].x, server->game.obstacles[i].y);
+        }
+    } else if (has_obstacles) {
+        // Ak nie sú prekážky načítané, generujeme ich
+        generate_obstacles(&server->game);
+        printf("Generované nové prekážky:\n");
+        for (int i = 0; i < server->game.num_obstacles; i++) {
+            printf("Prekážka %d: (%d, %d)\n", i, server->game.obstacles[i].x, server->game.obstacles[i].y);
+        }
+    }
+
     struct sockaddr_in client_addr;
     socklen_t client_len = sizeof(client_addr);
 
@@ -181,21 +195,7 @@ void start_game(Server *server, int has_obstacles) {
         }
 
         server->active_players++;
-        printf("Generujem ovocie pre počet hráčov: %d\n", server->active_players);
-        generate_fruit(&server->game, server->active_players);
-        generate_obstacles(&server->game);
-        server->last_activity_time = current_time;
-
-        // Generovanie prekážok na serveri
-        if (has_obstacles) {
-            generate_obstacles(&server->game);
-            printf("Generované prekážky:\n");
-            for (int i = 0; i < server->game.num_obstacles; i++) {
-                printf("Prekážka %d: (%d, %d)\n", i, server->game.obstacles[i].x, server->game.obstacles[i].y);
-            }
-        }
-
-
+        
         ClientArgs *args = malloc(sizeof(ClientArgs));
         args->server = server;
         args->client_socket = client_socket;

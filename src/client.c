@@ -67,7 +67,13 @@ void start_client() {
             perror("Chyba pri alokácii pamäte pre prekážky");
             exit(1);
         }
-        recv(sock, obstacles, num_obstacles * sizeof(Obstacle), 0);
+
+        int received_bytes = recv(sock, obstacles, num_obstacles * sizeof(Obstacle), 0);
+        if (received_bytes != num_obstacles * sizeof(Obstacle)) {
+            printf("Chyba: Neprijatý očakávaný počet bajtov pre prekážky. Prijaté: %d\n", received_bytes);
+            exit(1);
+        }
+
         printf("Prijaté prekážky:\n");
         for (int i = 0; i < num_obstacles; i++) {
             printf("Prekážka %d: (%d, %d)\n", i, obstacles[i].x, obstacles[i].y);
