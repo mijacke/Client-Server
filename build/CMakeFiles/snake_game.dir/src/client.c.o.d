@@ -1,6 +1,7 @@
-CMakeFiles/snake_game.dir/src/client.c.o: /home/maros/posko/src/client.c \
- /usr/include/stdc-predef.h /home/maros/posko/src/client.h \
- /usr/include/curses.h /usr/include/ncurses_dll.h \
+CMakeFiles/snake_game.dir/src/client.c.o: \
+ /home/mario/snake_game/src/client.c /usr/include/stdc-predef.h \
+ /home/mario/snake_game/src/client.h /usr/include/curses.h \
+ /usr/include/ncurses_dll.h \
  /usr/lib/gcc/x86_64-linux-gnu/13/include/stdint.h /usr/include/stdint.h \
  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/features-time64.h \
@@ -91,5 +92,6 @@ CMakeFiles/snake_game.dir/src/client.c.o: /home/maros/posko/src/client.c \
  /usr/include/asm-generic/sockios.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_osockaddr.h \
  /usr/include/arpa/inet.h /usr/include/netinet/in.h \
- /usr/include/x86_64-linux-gnu/bits/in.h /home/maros/posko/src/renderer.h \
- /home/maros/posko/src/snake.h /home/maros/posko/src/game.h
+ /usr/include/x86_64-linux-gnu/bits/in.h \
+ /home/mario/snake_game/src/renderer.h /home/mario/snake_game/src/snake.h \
+ /home/mario/snake_game/src/game.h

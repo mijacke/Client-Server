@@ -1,4 +1,4 @@
-CMakeFiles/snake_game.dir/src/main.c.o: /home/maros/posko/src/main.c \
+CMakeFiles/snake_game.dir/src/main.c.o: /home/mario/snake_game/src/main.c \
  /usr/include/stdc-predef.h /usr/include/stdio.h \
  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/features-time64.h \
@@ -79,8 +79,8 @@ CMakeFiles/snake_game.dir/src/main.c.o: /home/maros/posko/src/main.c \
  /usr/include/x86_64-linux-gnu/bits/sigthread.h \
  /usr/include/x86_64-linux-gnu/bits/signal_ext.h \
  /usr/include/x86_64-linux-gnu/bits/types/idtype_t.h \
- /home/maros/posko/src/server.h /home/maros/posko/src/game.h \
- /home/maros/posko/src/snake.h /usr/include/curses.h \
+ /home/mario/snake_game/src/server.h /home/mario/snake_game/src/game.h \
+ /home/mario/snake_game/src/snake.h /usr/include/curses.h \
  /usr/include/ncurses_dll.h \
  /usr/lib/gcc/x86_64-linux-gnu/13/include/stdint.h /usr/include/stdint.h \
  /usr/include/x86_64-linux-gnu/bits/wchar.h \
@@ -91,4 +91,4 @@ CMakeFiles/snake_game.dir/src/main.c.o: /home/maros/posko/src/main.c \
  /usr/include/x86_64-linux-gnu/bits/time.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h \
- /home/maros/posko/src/client.h
+ /home/mario/snake_game/src/client.h
