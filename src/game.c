@@ -2,9 +2,10 @@
 #include <stdlib.h>
 #include <time.h>
 
-void init_game(Game *game, int width, int height, int num_players) {
+void init_game(Game *game, int width, int height, int num_players, int has_obstacles) {
     game->width = width;
     game->height = height;
+    game->score = 0; // Nastavte skóre na 0
 
     init_snake(&game->snake, width / 2, height / 2);  // Inicializácia hadíka
 
@@ -17,13 +18,14 @@ void init_game(Game *game, int width, int height, int num_players) {
     }
 
     game->num_fruits = num_players;  // Nastavte počet ovocia
-    generate_game_world(game, num_players, 0);  // Generovanie sveta bez prekážok
+
+
+    generate_game_world(game, num_players, has_obstacles);  // Generovanie sveta bez prekážok
 }
 
 void generate_game_world(Game *game, int num_players, int has_obstacles) {
     game->num_fruits = num_players;
     generate_fruit(game, num_players);  // Vygeneruje ovocie
-
     if (has_obstacles) {
         game->num_obstacles = rand() % MAX_OBSTACLES + 1;  // Generovanie náhodného počtu prekážok
         generate_obstacles(game);  // Generovanie prekážok
@@ -48,7 +50,6 @@ void generate_fruit(Game *game, int num_players) {
                 }
             }
         }
-        printf("Ovocie generované na pozícii: (%d, %d)\n", game->fruit_x[i], game->fruit_y[i]);
     }
 }
 
@@ -59,16 +60,17 @@ void generate_obstacles(Game *game) {
             valid_position = 1;
             game->obstacles[i].x = rand() % (game->width - 2) + 1;
             game->obstacles[i].y = rand() % (game->height - 2) + 1;
-
+            printf("je vygenerovany");
             // Skontroluj, či prekážka nie je na mieste hadíka alebo ovocia
             for (int j = 0; j < game->snake.length; j++) {
                 if (game->snake.x[j] == game->obstacles[i].x && game->snake.y[j] == game->obstacles[i].y) {
-                    valid_position = 0;
+                    valid_position = 0;  // Kolízia s hadíkom
                     break;
                 }
             }
         }
     }
+
 }
 
 void draw_game(WINDOW *win, Game *game) {
@@ -81,6 +83,7 @@ void draw_game(WINDOW *win, Game *game) {
 
     // Zobrazenie prekážok
     for (int i = 0; i < game->num_obstacles; i++) {
+        printf("je vykresleny");
         mvwaddch(win, game->obstacles[i].y, game->obstacles[i].x, '#');
     }
 

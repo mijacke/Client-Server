@@ -54,6 +54,7 @@ int main() {
             int num_players = get_num_players(); // Získanie počtu hráčov
             int game_mode = get_game_mode();     // Získanie režimu hry
             int game_time = 0;
+            int has_obstacles = (game_mode == 2) ? 1 : 0; // Ak je režim 2, nastavíme prekážky
 
             if (game_mode == 2) {
                 printf("Zadajte čas hry (v sekundách): ");
@@ -67,7 +68,7 @@ int main() {
             } else if (pid1 == 0) {
                 Server server;
                 init_server(&server, 8080, game_mode, game_time, num_players);
-                start_game(&server);
+                start_game(&server, has_obstacles);
                 close_server(&server);
                 exit(0);
             }

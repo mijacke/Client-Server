@@ -43,6 +43,8 @@ void init_client(const char *server_address, int port) {
 
 // Funkcia na spustenie klienta a vykonávanie herného cyklu
 void start_client() {
+    int score = 0;
+
     int n = recv(sock, &server_time, sizeof(server_time), 0);
     if (n <= 0) {
         printf("Spojenie so serverom bolo ukončené.\n");
@@ -72,6 +74,7 @@ void start_client() {
     int fruit_x = rand() % (BOARD_WIDTH - 2) + 1;
     int fruit_y = rand() % (BOARD_HEIGHT - 2) + 1;
 
+
     while (1) {
         if (!paused) {
             time_t current_time = time(NULL);
@@ -87,13 +90,18 @@ void start_client() {
                 mvprintw(BOARD_HEIGHT + 1, 0, "Zostávajúci čas: %d sekúnd", remaining_time);
             }
 
+            mvprintw(BOARD_HEIGHT + 2, 0, "Skóre: %d", score);
+            refresh();
+
             draw_board(win, snake.x[0], snake.y[0], fruit_x, fruit_y);
             draw_snake(win, &snake);
+
 
             move_snake(&snake, current_direction, grow);
 
             if (snake.x[0] == fruit_x && snake.y[0] == fruit_y) {
                 grow = 1;
+                score++;
                 fruit_x = rand() % (BOARD_WIDTH - 2) + 1;
                 fruit_y = rand() % (BOARD_HEIGHT - 2) + 1;
             } else {

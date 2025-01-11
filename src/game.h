@@ -17,12 +17,13 @@ typedef struct {
     int *fruit_y;           // Y pozície ovocia
     int num_fruits;         // Počet ovocia
     int num_obstacles;      // Počet prekážok
+    int score;              // Skóre
     struct {
         int x, y;           // Pozícia prekážky
     } obstacles[MAX_OBSTACLES]; // Pole prekážok
 } Game;
 
-void init_game(Game *game, int width, int height, int num_players);
+void init_game(Game *game, int width, int height, int num_players, int has_obstacles);
 void generate_fruit(Game *game, int num_players);
 void generate_game_world(Game *game, int num_players, int has_obstacles);
 void generate_obstacles(Game *game);

@@ -1,7 +1,6 @@
-CMakeFiles/snake_game.dir/src/snake.c.o: \
- /home/mario/snake_game/src/snake.c /usr/include/stdc-predef.h \
- /home/mario/snake_game/src/snake.h /usr/include/curses.h \
- /usr/include/ncurses_dll.h \
+CMakeFiles/snake_game.dir/src/snake.c.o: /home/maros/posko/src/snake.c \
+ /usr/include/stdc-predef.h /home/maros/posko/src/snake.h \
+ /usr/include/curses.h /usr/include/ncurses_dll.h \
  /usr/lib/gcc/x86_64-linux-gnu/13/include/stdint.h /usr/include/stdint.h \
  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/features-time64.h \
@@ -31,8 +30,8 @@ CMakeFiles/snake_game.dir/src/snake.c.o: \
  /usr/include/x86_64-linux-gnu/bits/floatn.h \
  /usr/include/x86_64-linux-gnu/bits/floatn-common.h \
  /usr/lib/gcc/x86_64-linux-gnu/13/include/stdbool.h /usr/include/unctrl.h \
- /usr/include/curses.h /home/mario/snake_game/src/server.h \
- /home/mario/snake_game/src/game.h /usr/include/time.h \
+ /usr/include/curses.h /home/maros/posko/src/server.h \
+ /home/maros/posko/src/game.h /usr/include/time.h \
  /usr/include/x86_64-linux-gnu/bits/time.h \
  /usr/include/x86_64-linux-gnu/bits/types/clock_t.h \
  /usr/include/x86_64-linux-gnu/bits/types/time_t.h \

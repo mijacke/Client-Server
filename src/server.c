@@ -63,6 +63,7 @@ void init_server(Server *server, int port, int game_mode, int game_time, int num
     }
 
     printf("Server počúva na porte %d...\n", port);
+
 }
 
 // Obsluha pripojeného klienta
@@ -101,7 +102,10 @@ void *client_handler(void *args) {
 
     printf("Generujem ovocie pre počet hráčov: %d\n", server->active_players);
     generate_fruit(&server->game, server->active_players);
+
     printf("Ovocie vygenerované.\n");
+
+    //generate_obstacles(&server->game);
 
 
     // Hlavná herná slučka
@@ -124,7 +128,7 @@ void *client_handler(void *args) {
             printf("Hráč %d narazil. Ukončujem hru pre hráča.\n", player_index);
             break;  // Ukonči hru pre hráča pri kolízii
         }
-        
+
         // Posielanie pozícií všetkých hadíkov všetkým klientom
         for (int i = 0; i < server->active_players; i++) {
             if (players[i].active && players[i].client_socket != client_socket) {
@@ -141,6 +145,8 @@ void *client_handler(void *args) {
             }
         }
 
+
+
         usleep(200000);
     }
 
@@ -153,9 +159,9 @@ void *client_handler(void *args) {
 
 // Predpokladám, že sa nachádzate v sekcii, kde začína hra pre viacerých hráčov
 
-void start_game(Server *server) {
+void start_game(Server *server, int has_obstacles) {
     // Pred spustením hry inicializujte štruktúru hry
-    init_game(&server->game, BOARD_WIDTH, BOARD_HEIGHT, server->active_players);
+    init_game(&server->game, BOARD_WIDTH, BOARD_HEIGHT, server->active_players, has_obstacles);
 
     struct sockaddr_in client_addr;
     socklen_t client_len = sizeof(client_addr);
@@ -179,6 +185,7 @@ void start_game(Server *server) {
         server->active_players++;
         printf("Generujem ovocie pre počet hráčov: %d\n", server->active_players);
         generate_fruit(&server->game, server->active_players);
+        generate_obstacles(&server->game);
         server->last_activity_time = current_time;
 
         ClientArgs *args = malloc(sizeof(ClientArgs));
@@ -209,18 +216,18 @@ void close_server(Server *server) {
 
 int check_collision(Snake *snake, Player *players, int num_players, int width, int height) {
     // Debug: Tlač súradníc hlavy hadíka
-    printf("DEBUG: Kontrola kolízie - Hlava hadíka: (%d, %d), Dĺžka: %d\n", snake->x[0], snake->y[0], snake->length);
+    //printf("DEBUG: Kontrola kolízie - Hlava hadíka: (%d, %d), Dĺžka: %d\n", snake->x[0], snake->y[0], snake->length);
 
     // Kolízia s hranicami
     if (snake->x[0] < 0 || snake->x[0] >= width || snake->y[0] < 0 || snake->y[0] >= height) {
-        printf("DEBUG: Kolízia s hranicami na pozícii (%d, %d).\n", snake->x[0], snake->y[0]);
+        //printf("DEBUG: Kolízia s hranicami na pozícii (%d, %d).\n", snake->x[0], snake->y[0]);
         return 1;  // Kolízia s hranicami
     }
 
     // Kolízia so sebou samým
     for (int i = 1; i < snake->length; i++) {
         if (snake->x[0] == snake->x[i] && snake->y[0] == snake->y[i]) {
-            printf("DEBUG: Kolízia so sebou na pozícii (%d, %d). Článok index: %d\n", snake->x[i], snake->y[i], i);
+            //printf("DEBUG: Kolízia so sebou na pozícii (%d, %d). Článok index: %d\n", snake->x[i], snake->y[i], i);
             return 1;  // Kolízia so sebou samým
         }
     }
@@ -232,14 +239,14 @@ int check_collision(Snake *snake, Player *players, int num_players, int width, i
 
         for (int j = 0; j < other_snake->length; j++) {
             if (snake->x[0] == other_snake->x[j] && snake->y[0] == other_snake->y[j]) {
-                printf("DEBUG: Kolízia s iným hadíkom (%d, %d). Hráč: %d, Článok index: %d\n",
-                       other_snake->x[j], other_snake->y[j], i, j);
+                //printf("DEBUG: Kolízia s iným hadíkom (%d, %d). Hráč: %d, Článok index: %d\n",
+                //       other_snake->x[j], other_snake->y[j], i, j);
                 return 1;  // Kolízia s iným hadíkom
             }
         }
     }
 
     // Žiadna kolízia
-    printf("DEBUG: Žiadna kolízia detegovaná.\n");
+    //printf("DEBUG: Žiadna kolízia detegovaná.\n");
     return 0;
 }

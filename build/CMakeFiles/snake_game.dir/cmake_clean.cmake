@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/snake_game.dir/link.d"
   "CMakeFiles/snake_game.dir/src/client.c.o"
   "CMakeFiles/snake_game.dir/src/client.c.o.d"
   "CMakeFiles/snake_game.dir/src/game.c.o"
