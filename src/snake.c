@@ -1,5 +1,6 @@
 #include "snake.h"
 #include <ncurses.h>
+#include "server.h"
 
 void init_snake(Snake *snake, int start_x, int start_y) {
     snake->x[0] = start_x;
@@ -32,22 +33,6 @@ void move_snake(Snake *snake, char direction, int grow) {
     if (grow) {
         snake->length++;
     }
-}
-
-int check_collision(Snake *snake, int width, int height) {
-    // Kolízia s hranicami
-    if (snake->x[0] <= 0 || snake->x[0] >= width - 1 || snake->y[0] <= 0 || snake->y[0] >= height - 1) {
-        return 1;  // Kolízia s hranicou
-    }
-
-    // Kolízia s vlastným telom
-    for (int i = 1; i < snake->length; i++) {  // Začíname od 1, pretože index 0 je hlava
-        if (snake->x[0] == snake->x[i] && snake->y[0] == snake->y[i]) {
-            return 1;  // Kolízia so sebou samým
-        }
-    }
-
-    return 0;  // Bez kolízie
 }
 
 void draw_snake(WINDOW *win, Snake *snake) {

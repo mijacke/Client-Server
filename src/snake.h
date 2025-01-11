@@ -14,7 +14,6 @@ typedef struct {
 
 void init_snake(Snake *snake, int start_x, int start_y);
 void move_snake(Snake *snake, char direction, int grow);
-int check_collision(Snake *snake, int width, int height);
 void draw_snake(WINDOW *win, Snake *snake);
 
 #endif

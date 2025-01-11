@@ -4,6 +4,7 @@
 #include "game.h"  // Uistíme sa, že použijeme správny typ pre `Game`
 #include <time.h>
 #include <ncurses.h>
+#include "snake.h"
 
 #define MAX_PLAYERS 2  // Maximálny počet hráčov v hre
 
@@ -36,12 +37,11 @@ typedef struct {
     int client_socket;       // Socket klienta
 } ClientArgs;
 
-// Deklarácia funkcie na získanie herného režimu
-int get_game_mode();  // Funkcia na získanie herného režimu
-
 void init_server(Server *server, int port, int game_mode, int game_time, int num_players);
 void *client_handler(void *client_socket);
 void start_game(Server *server);
 void close_server(Server *server);
+int check_collision(Snake *snake, Player *players, int num_players, int width, int height);
+
 
 #endif

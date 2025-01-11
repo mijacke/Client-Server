@@ -43,7 +43,12 @@ void init_client(const char *server_address, int port) {
 
 // Funkcia na spustenie klienta a vykonávanie herného cyklu
 void start_client() {
-    recv(sock, &server_time, sizeof(server_time), 0);
+    int n = recv(sock, &server_time, sizeof(server_time), 0);
+    if (n <= 0) {
+        printf("Spojenie so serverom bolo ukončené.\n");
+        goto end;
+    }
+
     recv(sock, &start_time, sizeof(start_time), 0);
     printf("Prijatý čas hry: %d sekúnd, začiatok hry: %ld\n", server_time, start_time);
 
@@ -61,65 +66,80 @@ void start_client() {
     Snake snake;
     int grow = 0;
     char current_direction = 'd';
+    int paused = 0; // Premenná na sledovanie pauzy
 
     init_snake(&snake, BOARD_WIDTH / 2, BOARD_HEIGHT / 2);
     int fruit_x = rand() % (BOARD_WIDTH - 2) + 1;
     int fruit_y = rand() % (BOARD_HEIGHT - 2) + 1;
 
     while (1) {
-        time_t current_time = time(NULL);
-        int remaining_time = (server_time > 0) ? server_time - difftime(current_time, start_time) : INT64_MAX;
+        if (!paused) {
+            time_t current_time = time(NULL);
+            int remaining_time = (server_time > 0) ? server_time - difftime(current_time, start_time) : INT64_MAX;
 
-        if (remaining_time <= 0 && server_time > 0) {
-            mvprintw(BOARD_HEIGHT + 1, 0, "Čas vypršal! Koniec hry.");
+            if (server_time == INT16_MAX) {
+                mvprintw(BOARD_HEIGHT + 1, 0, "Štandardný režim: nekonečný čas.");
+            } else if (remaining_time <= 0) {
+                mvprintw(BOARD_HEIGHT + 1, 0, "Čas vypršal! Koniec hry.");
+                refresh();
+                break;
+            } else {
+                mvprintw(BOARD_HEIGHT + 1, 0, "Zostávajúci čas: %d sekúnd", remaining_time);
+            }
+
+            draw_board(win, snake.x[0], snake.y[0], fruit_x, fruit_y);
+            draw_snake(win, &snake);
+
+            move_snake(&snake, current_direction, grow);
+
+            if (snake.x[0] == fruit_x && snake.y[0] == fruit_y) {
+                grow = 1;
+                fruit_x = rand() % (BOARD_WIDTH - 2) + 1;
+                fruit_y = rand() % (BOARD_HEIGHT - 2) + 1;
+            } else {
+                grow = 0;
+            }
+        } else {
+            mvprintw(BOARD_HEIGHT + 2, 0, "Hra pozastavená. Stlačte 'p' na pokračovanie.");
             refresh();
-            break;
         }
-
-        // Vykreslenie všetkých hadíkov a ovocia
-        draw_board(win, snake.x[0], snake.y[0], fruit_x, fruit_y);
-        draw_snake(win, &snake);
-        mvprintw(BOARD_HEIGHT + 1, 0, "Zostávajúci čas: %d sekúnd", remaining_time);
-        refresh();
 
         int ch = wgetch(win);
         if (ch != ERR) {
+            if (paused && ch != 'p') {
+                continue; // Ak je pauza, ignorujeme všetky klávesy okrem 'p'
+            }
             switch (ch) {
                 case 'w':
-                    if (current_direction != 's') current_direction = 'w';
+                    if (!paused && current_direction != 's') current_direction = 'w';
                     break;
                 case 's':
-                    if (current_direction != 'w') current_direction = 's';
+                    if (!paused && current_direction != 'w') current_direction = 's';
                     break;
                 case 'a':
-                    if (current_direction != 'd') current_direction = 'a';
+                    if (!paused && current_direction != 'd') current_direction = 'a';
                     break;
                 case 'd':
-                    if (current_direction != 'a') current_direction = 'd';
+                    if (!paused && current_direction != 'a') current_direction = 'd';
+                    break;
+                case 'p':
+                    paused = !paused; // Prepnutie pauzy
                     break;
                 case 'q':
                     goto end;
-
-
             }
 
-            // Posielanie príkazov serveru
-            send(sock, &ch, sizeof(ch), 0);
+            if (!paused) {
+                if (send(sock, &ch, sizeof(ch), 0) <= 0) {
+                    printf("Spojenie so serverom bolo ukončené.\n");
+                    break;
+                }
+            }
         }
 
-        move_snake(&snake, current_direction, grow);
-
-        if (snake.x[0] == fruit_x && snake.y[0] == fruit_y) {
-            grow = 1;
-            fruit_x = rand() % (BOARD_WIDTH - 2) + 1;
-            fruit_y = rand() % (BOARD_HEIGHT - 2) + 1;
-        } else {
-            grow = 0;
-        }
-
-        usleep(200000);  // Pauza
+        usleep(200000); // Rýchlosť hry
     }
 
-    end:
+end:
     endwin();
 }

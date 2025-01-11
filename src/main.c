@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/wait.h>
 #include "server.h"
 #include "client.h"
 
@@ -28,42 +31,74 @@ int get_game_mode() {
     printf("Zadajte číslo režimu (1 alebo 2): ");
     scanf("%d", &game_mode);
 
-    return game_mode;  // 1 pre hru bez prekážok, 2 pre hru s prekážkami
+    if (game_mode < 1 || game_mode > 2) {
+        printf("Neplatný výber. Zadajte 1 alebo 2.\n");
+        exit(1);
+    }
+
+    return game_mode;
 }
 
-int main(int argc, char *argv[]) {
-    if (argc < 2) {
-        fprintf(stderr, "Použitie: %s <server|client>\n", argv[0]);
-        exit(1);
-    }
+int main() {
+    while (1) {
+        printf("\nHlavné menu:\n");
+        printf("1. Nová hra\n");
+        printf("2. Pripojenie k hre\n");
+        printf("3. Koniec\n");
+        printf("Zadajte možnosť: ");
 
-    if (strcmp(argv[1], "server") == 0) {
-        // Výber počtu hráčov
-        int num_players = get_num_players();
+        int choice;
+        scanf("%d", &choice);
 
-        // Výber režimu hry
-        int game_mode = get_game_mode();
+        if (choice == 1) {
+            int num_players = get_num_players(); // Získanie počtu hráčov
+            int game_mode = get_game_mode();     // Získanie režimu hry
+            int game_time = 0;
 
-        int game_time = 0;
+            if (game_mode == 2) {
+                printf("Zadajte čas hry (v sekundách): ");
+                scanf("%d", &game_time);
+            }
 
-        if (game_mode == 2) {
-            // Zadajte čas hry len v časovom režime
-            printf("Zadajte čas hry (v sekundách): ");
-            scanf("%d", &game_time);
+            pid_t pid1 = fork();
+            if (pid1 < 0) {
+                perror("Chyba pri vytváraní serverového procesu");
+                exit(1);
+            } else if (pid1 == 0) {
+                Server server;
+                init_server(&server, 8080, game_mode, game_time, num_players);
+                start_game(&server);
+                close_server(&server);
+                exit(0);
+            }
+
+            sleep(2);
+
+            for (int i = 0; i < num_players; i++) {
+                pid_t pid2 = fork();
+                if (pid2 < 0) {
+                    perror("Chyba pri vytváraní klientského procesu");
+                    exit(1);
+                } else if (pid2 == 0) {
+                    init_client("127.0.0.1", 8080);
+                    start_client();
+                    exit(0);
+                }
+            }
+
+            wait(NULL); // Čakáme na ukončenie servera
+            for (int i = 0; i < num_players; i++) {
+                wait(NULL);
+            }
+        } else if (choice == 2) {
+            init_client("127.0.0.1", 8080);
+            start_client();
+        } else if (choice == 3) {
+            printf("Aplikácia sa ukončuje.\n");
+            break;
+        } else {
+            printf("Neplatná možnosť, skúste znova.\n");
         }
-
-        Server server;
-        init_server(&server, 8080, game_mode, game_time, num_players);  // Inicializácia servera
-        start_game(&server);  // Tu sa začne hra podľa režimu
-        close_server(&server);
-    } else if (strcmp(argv[1], "client") == 0) {
-        // Pre klienta môžeme nastaviť serverovú adresu a port
-        init_client("127.0.0.1", 8080);
-        start_client();
-    } else {
-        fprintf(stderr, "Neplatný argument. Použite 'server' alebo 'client'.\n");
-        exit(1);
     }
-
     return 0;
 }
