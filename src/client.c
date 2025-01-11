@@ -10,6 +10,7 @@
 #include "renderer.h"
 #include "snake.h"
 #include "game.h"
+#include "server.h"
 
 #define BOARD_WIDTH 30
 #define BOARD_HEIGHT 10
@@ -94,6 +95,15 @@ void start_client() {
 
     while (1) {
         if (!paused) {
+
+            char signal;
+            n = recv(sock, &signal, sizeof(signal), MSG_DONTWAIT);  // Non-blocking prijatie signálu
+            if (n > 0 && signal == 'E') {
+                mvprintw(BOARD_HEIGHT + 3, 0, "Koniec hry: Narazili ste!");
+                refresh();
+                break;  // Ukončite hru na základe signálu od servera
+            }
+
             time_t current_time = time(NULL);
             int remaining_time = (server_time > 0) ? server_time - difftime(current_time, start_time) : INT64_MAX;
 
@@ -122,6 +132,13 @@ void start_client() {
             }
 
             move_snake(&snake, current_direction, grow);
+
+            // Kontrola kolízie
+            if (check_collision(&snake, NULL, 0, BOARD_WIDTH, BOARD_HEIGHT, &(Game){ .num_obstacles = num_obstacles, .obstacles = obstacles })) {
+                mvprintw(BOARD_HEIGHT + 3, 0, "Koniec hry: Narazili ste!");
+                refresh();
+                break;  // Koniec hry
+            }
 
             if (snake.x[0] == fruit_x && snake.y[0] == fruit_y) {
                 grow = 1;

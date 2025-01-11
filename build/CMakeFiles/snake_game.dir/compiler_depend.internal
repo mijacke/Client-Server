@@ -6,6 +6,7 @@ CMakeFiles/snake_game.dir/src/client.c.o
  /home/mario/snake_game/src/client.h
  /home/mario/snake_game/src/game.h
  /home/mario/snake_game/src/renderer.h
+ /home/mario/snake_game/src/server.h
  /home/mario/snake_game/src/snake.h
  /usr/include/alloca.h
  /usr/include/arpa/inet.h

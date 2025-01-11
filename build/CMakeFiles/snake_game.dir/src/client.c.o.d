@@ -94,4 +94,4 @@ CMakeFiles/snake_game.dir/src/client.c.o: \
  /usr/include/arpa/inet.h /usr/include/netinet/in.h \
  /usr/include/x86_64-linux-gnu/bits/in.h \
  /home/mario/snake_game/src/renderer.h /home/mario/snake_game/src/snake.h \
- /home/mario/snake_game/src/game.h
+ /home/mario/snake_game/src/game.h /home/mario/snake_game/src/server.h

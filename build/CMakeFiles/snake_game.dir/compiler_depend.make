@@ -5,6 +5,7 @@ CMakeFiles/snake_game.dir/src/client.c.o: /home/mario/snake_game/src/client.c \
   /home/mario/snake_game/src/client.h \
   /home/mario/snake_game/src/game.h \
   /home/mario/snake_game/src/renderer.h \
+  /home/mario/snake_game/src/server.h \
   /home/mario/snake_game/src/snake.h \
   /usr/include/alloca.h \
   /usr/include/arpa/inet.h \
@@ -612,6 +613,22 @@ CMakeFiles/snake_game.dir/src/snake.c.o: /home/mario/snake_game/src/snake.c \
 
 /home/mario/snake_game/src/client.c:
 
+/usr/include/x86_64-linux-gnu/bits/in.h:
+
+/usr/include/unctrl.h:
+
+/usr/include/x86_64-linux-gnu/bits/struct_mutex.h:
+
+/usr/include/alloca.h:
+
+/usr/include/x86_64-linux-gnu/bits/pthreadtypes.h:
+
+/home/mario/snake_game/src/renderer.h:
+
+/usr/include/time.h:
+
+/usr/include/x86_64-linux-gnu/bits/signum-arch.h:
+
 /usr/include/x86_64-linux-gnu/sys/wait.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h:
@@ -646,6 +663,8 @@ CMakeFiles/snake_game.dir/src/snake.c.o: /home/mario/snake_game/src/snake.c \
 
 /usr/include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h:
 
+/usr/include/x86_64-linux-gnu/bits/waitstatus.h:
+
 /usr/include/pthread.h:
 
 /usr/include/sched.h:
@@ -671,22 +690,6 @@ CMakeFiles/snake_game.dir/src/snake.c.o: /home/mario/snake_game/src/snake.c \
 /usr/include/x86_64-linux-gnu/bits/confname.h:
 
 /usr/include/x86_64-linux-gnu/bits/siginfo-arch.h:
-
-/usr/include/time.h:
-
-/usr/include/x86_64-linux-gnu/bits/pthreadtypes.h:
-
-/home/mario/snake_game/src/renderer.h:
-
-/usr/include/x86_64-linux-gnu/bits/signum-arch.h:
-
-/usr/include/x86_64-linux-gnu/bits/in.h:
-
-/usr/include/alloca.h:
-
-/usr/include/unctrl.h:
-
-/usr/include/x86_64-linux-gnu/bits/struct_mutex.h:
 
 /usr/include/x86_64-linux-gnu/bits/types.h:
 
@@ -755,8 +758,6 @@ CMakeFiles/snake_game.dir/src/snake.c.o: /home/mario/snake_game/src/snake.c \
 /usr/include/x86_64-linux-gnu/bits/unistd_ext.h:
 
 /usr/include/x86_64-linux-gnu/bits/waitflags.h:
-
-/usr/include/x86_64-linux-gnu/bits/waitstatus.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h:
 

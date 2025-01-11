@@ -131,8 +131,11 @@ void *client_handler(void *args) {
         // **Kontrola kolízie**
         if (check_collision(snake, players, server->active_players, BOARD_WIDTH, BOARD_HEIGHT, &server->game)) {
             printf("Hráč %d narazil. Ukončujem hru pre hráča.\n", player_index);
-            break;  // Ukonči hru pre hráča pri kolízii
+            char end_signal = 'E';  // Signalizácia konca hry
+            send(client_socket, &end_signal, sizeof(end_signal), 0);
+            break;  // Ukonči hru pre tohto hráča
         }
+
 
         usleep(200000);
     }
@@ -235,11 +238,11 @@ int check_collision(Snake *snake, Player *players, int num_players, int width, i
     // Kolízia s inými hráčmi
     for (int i = 0; i < num_players; i++) {
         Snake *other_snake = &players[i].snake;
-        if (other_snake == snake) continue;  // Preskoč svojho hadíka
+        if (other_snake == snake) continue;  // Preskoč svojho hada
 
         for (int j = 0; j < other_snake->length; j++) {
             if (snake->x[0] == other_snake->x[j] && snake->y[0] == other_snake->y[j]) {
-                return 1;  // Kolízia s iným hadíkom
+                return 1;  // Kolízia s iným hadom
             }
         }
     }
@@ -247,10 +250,10 @@ int check_collision(Snake *snake, Player *players, int num_players, int width, i
     // Kolízia s prekážkami
     for (int i = 0; i < game->num_obstacles; i++) {
         if (snake->x[0] == game->obstacles[i].x && snake->y[0] == game->obstacles[i].y) {
+            printf("Had narazil do prekážky na pozícii: (%d, %d)\n", game->obstacles[i].x, game->obstacles[i].y);
             return 1;  // Kolízia s prekážkou
         }
     }
 
-    // Žiadna kolízia
-    return 0;
+    return 0;  // Žiadna kolízia
 }
