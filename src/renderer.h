@@ -2,8 +2,11 @@
 #define RENDERER_H
 
 #include <ncurses.h>
+#include "game.h"
 
-void draw_board(WINDOW *win, int snake_x, int snake_y, int fruit_x, int fruit_y);
+/**
+ * Vykreslí stav hry do daného okna (nakreslí okraj, prekážky, ovocie, hady).
+ */
+void draw_game_state(WINDOW *win, const GameState *gs);
 
 #endif
-

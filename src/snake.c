@@ -1,44 +1,47 @@
 #include "snake.h"
-#include <ncurses.h>
-#include "server.h"
+#include <string.h>
 
 void init_snake(Snake *snake, int start_x, int start_y) {
-    snake->x[0] = start_x;
-    snake->y[0] = start_y;
-    snake->length = 1;
+    // Vynulujeme pamäť
+    memset(snake, 0, sizeof(Snake));
+
+    // Napr. hadík bude mať 3 články
+    snake->length = 3;
+    // Segmenty dáme horizontálne od (start_x, start_y) smerom doľava
+    for (int i = 0; i < snake->length; i++) {
+        snake->x[i] = start_x - i;
+        snake->y[i] = start_y;
+    }
+    snake->last_direction = 'd'; // default smer doprava
 }
 
-void move_snake(Snake *snake, char direction, int grow) {
-    // Posuň telo (od konca po začiatok)
+void move_snake(Snake *snake, int width, int height) {
+    // Posunieme telo: od konca po začiatok
     for (int i = snake->length - 1; i > 0; i--) {
         snake->x[i] = snake->x[i - 1];
         snake->y[i] = snake->y[i - 1];
     }
 
-    // Posuň hlavu podľa smeru
-    switch (direction) {
-        case 'w': snake->y[0]--; break;  // Hore
-        case 's': snake->y[0]++; break;  // Dole
-        case 'a': snake->x[0]--; break;  // Vľavo
-        case 'd': snake->x[0]++; break;  // Vpravo
+    // Posunieme hlavu podľa last_direction
+    switch (snake->last_direction) {
+        case 'w': snake->y[0]--; break; // hore
+        case 's': snake->y[0]++; break; // dole
+        case 'a': snake->x[0]--; break; // vľavo
+        case 'd': snake->x[0]++; break; // vpravo
+        default: break;
     }
 
-    // Wrap-around správanie (presun na opačnú stranu)
-    if (snake->x[0] < 0) snake->x[0] = BOARD_WIDTH - 2;  // Zľava na pravú stranu
-    if (snake->x[0] >= BOARD_WIDTH - 1) snake->x[0] = 1;  // Sprava na ľavú stranu
-    if (snake->y[0] < 0) snake->y[0] = BOARD_HEIGHT - 2;  // Zhora dole
-    if (snake->y[0] >= BOARD_HEIGHT - 1) snake->y[0] = 1; // Zdola hore
-
-    // Ak hadík rastie, predĺži sa telo
-    if (grow) {
-        snake->length++;
-    }
+    // Wrapping správanie
+    if (snake->x[0] < 0) snake->x[0] = width - 1;
+    if (snake->x[0] >= width) snake->x[0] = 0;
+    if (snake->y[0] < 0) snake->y[0] = height - 1;
+    if (snake->y[0] >= height) snake->y[0] = 0;
 }
 
-void draw_snake(WINDOW *win, Snake *snake) {
-    for (int i = 0; i < snake->length; i++) {
-        mvwaddch(win, snake->y[i], snake->x[i], 'O');  // Každý článok tela
+void grow_snake(Snake *snake) {
+    // Zvýšime dĺžku o 1
+    snake->length++;
+    if (snake->length > MAX_SNAKE_LENGTH) {
+        snake->length = MAX_SNAKE_LENGTH;
     }
 }
-
-

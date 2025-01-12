@@ -2,36 +2,47 @@
 #define GAME_H
 
 #include "snake.h"
-#include <ncurses.h>
+#include <time.h>
 
-#define BOARD_HEIGHT 10
-#define BOARD_WIDTH 30
+#define MAX_PLAYERS 2
 #define MAX_OBSTACLES 5
 
+/**
+ * Reprezentácia jednej prekážky
+ */
 typedef struct {
     int x;
     int y;
 } Obstacle;
 
-// Štruktúra pre herný svet
+/**
+ * Toto je štruktúra, ktorá sa posiela z servera klientom
+ * a obsahuje stav hry (čo treba na vykreslenie).
+ */
 typedef struct {
-    int width;              // Šírka hracej plochy
-    int height;             // Výška hracej plochy
-    Snake snake;            // Hadík
-    int *fruit_x;           // X pozície ovocia
-    int *fruit_y;           // Y pozície ovocia
-    int num_fruits;         // Počet ovocia
-    int num_obstacles;      // Počet prekážok
-    int score;              // Skóre
-    Obstacle *obstacles; // Dynamické pole prekážok
-} Game;
+    int num_players; // koľko hráčov je reálne aktívnych
 
-void init_game(Game *game, int width, int height, int num_players, int has_obstacles);
-void generate_fruit(Game *game, int num_players);
-void generate_game_world(Game *game, int num_players, int has_obstacles);
-void generate_obstacles(Game *game);
-void draw_game(WINDOW *win, Game *game);
-void load_obstacles_from_file(Game *game, const char *filename);
-int is_valid_position(Game *game, int x, int y);
+    // Pre každého hráča
+    int snake_x[MAX_PLAYERS][MAX_SNAKE_LENGTH];
+    int snake_y[MAX_PLAYERS][MAX_SNAKE_LENGTH];
+    int snake_length[MAX_PLAYERS];
+    int score[MAX_PLAYERS];
+
+    // kazdy novy hadik = ovocie++
+    int fruit_count;
+    int fruit_x[MAX_PLAYERS];
+    int fruit_y[MAX_PLAYERS];
+
+    int num_obstacles;
+    Obstacle obstacles[MAX_OBSTACLES];
+
+    int game_over; // (0 = beží, 1 = koniec)
+    time_t start_time;
+} GameState;
+
+/**
+ * Načíta prekážky zo súboru do poľa obstacles
+ */
+void load_obstacles_from_file(Obstacle *obstacles, int *num_obstacles, const char *filename);
 
 #endif

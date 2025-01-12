@@ -1,47 +1,50 @@
 #ifndef SERVER_H
 #define SERVER_H
 
-#include "game.h"  // Uistíme sa, že použijeme správny typ pre `Game`
 #include <time.h>
-#include <ncurses.h>
 #include "snake.h"
+#include "game.h"
 
-#define MAX_PLAYERS 2  // Maximálny počet hráčov v hre
+#define MAX_PLAYERS 2
 
-// Definícia štruktúry pre ovocie
-typedef struct {
-    int x;  // X pozícia ovocia
-    int y;  // Y pozícia ovocia
-} Fruit;
-
-// Zoznam hráčov
+/**
+ * Štruktúra pre hráča na serveri
+ */
 typedef struct {
     Snake snake;
     int client_socket;
-    int active;  // Stav hráča (aktívny alebo neaktívny)
+    int active;   // 1 = hraje, 0 = nepripojený
+    int score;
 } Player;
 
-// Struktúra servera
+/**
+ * Štruktúra servera
+ */
 typedef struct {
-    int socket;                // Socket servera
-    Game game;                 // Stav hry
-    int game_mode;             // 0 = štandardný, 1 = časový
-    int game_time;             // Časový limit pre hru
-    time_t start_time;         // Čas začiatku hry
-    int active_players;        // Počet aktívnych hráčov
-    time_t last_activity_time; // Čas poslednej aktivity
+    int socket;          // serverový socket
+    int game_mode;       // 1=bez prekážok, 2= s prekážkami
+    int game_time;       // ak je časový režim
+    time_t start_time;
+    int active_players;
+    int running;         // 1= beží, 0= koniec
+
+    int max_players;
+    Player players[MAX_PLAYERS];
+    // Namiesto jedného ovocia, pole (max 2 ovocia) – 2 hráči max
+    int fruit_x[MAX_PLAYERS];
+    int fruit_y[MAX_PLAYERS];
+
+    // Prekážky
+    Obstacle obstacles[MAX_OBSTACLES];
+    int num_obstacles;
 } Server;
 
-typedef struct {
-    Server *server;          // Ukazovateľ na server
-    int client_socket;       // Socket klienta
-} ClientArgs;
+// Funkcie
 
-void init_server(Server *server, int port, int game_mode, int game_time, int num_players);
-void *client_handler(void *client_socket);
-void start_game(Server *server, int has_obstacles);
-void close_server(Server *server);
-int check_collision(Snake *snake, Player *players, int num_players, int width, int height, Game *game);
-
+void init_server(Server *server, int port, int game_mode, int game_time, int max_players);
+void start_server(Server *server);
+void stop_server(Server *server);
+int check_collision(const Snake *snake, const Player *players, int num_players,
+                    int width, int height, const Obstacle *obstacles, int num_obstacles);
 
 #endif
