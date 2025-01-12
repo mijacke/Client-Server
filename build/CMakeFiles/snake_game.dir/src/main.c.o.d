@@ -1,4 +1,4 @@
-CMakeFiles/snake_game.dir/src/main.c.o: /home/maros/konecne/src/main.c \
+CMakeFiles/snake_game.dir/src/main.c.o: /home/mario/snake_game/src/main.c \
  /usr/include/stdc-predef.h /usr/include/stdio.h \
  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/features-time64.h \
@@ -76,11 +76,11 @@ CMakeFiles/snake_game.dir/src/main.c.o: /home/maros/konecne/src/main.c \
  /usr/include/x86_64-linux-gnu/bits/sigthread.h \
  /usr/include/x86_64-linux-gnu/bits/signal_ext.h \
  /usr/include/x86_64-linux-gnu/bits/types/idtype_t.h \
- /home/maros/konecne/src/server.h /usr/include/time.h \
+ /home/mario/snake_game/src/server.h /usr/include/time.h \
  /usr/include/x86_64-linux-gnu/bits/time.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h \
  /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
  /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
- /home/maros/konecne/src/snake.h /home/maros/konecne/src/game.h \
- /home/maros/konecne/src/client.h
+ /home/mario/snake_game/src/snake.h /home/mario/snake_game/src/game.h \
+ /home/mario/snake_game/src/client.h

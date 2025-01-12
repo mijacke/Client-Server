@@ -37,7 +37,12 @@ typedef struct {
     Obstacle obstacles[MAX_OBSTACLES];
 
     int game_over; // (0 = beží, 1 = koniec)
+
+    // Zaciatok hry
     time_t start_time;
+
+    int paused;        // 1 = je pauza, 0 = beží
+    int countdown;     // odpočet 3..2..1.., ak 0 => žiadny odpočet
 } GameState;
 
 /**

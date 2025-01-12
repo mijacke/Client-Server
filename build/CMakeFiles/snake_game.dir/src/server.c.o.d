@@ -1,6 +1,6 @@
 CMakeFiles/snake_game.dir/src/server.c.o: \
- /home/maros/konecne/src/server.c /usr/include/stdc-predef.h \
- /home/maros/konecne/src/server.h /usr/include/time.h \
+ /home/mario/snake_game/src/server.c /usr/include/stdc-predef.h \
+ /home/mario/snake_game/src/server.h /usr/include/time.h \
  /usr/include/features.h /usr/include/features-time64.h \
  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
  /usr/include/x86_64-linux-gnu/bits/timesize.h \
@@ -24,7 +24,7 @@ CMakeFiles/snake_game.dir/src/server.c.o: \
  /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h \
  /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
  /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
- /home/maros/konecne/src/snake.h /home/maros/konecne/src/game.h \
+ /home/mario/snake_game/src/snake.h /home/mario/snake_game/src/game.h \
  /usr/include/stdio.h \
  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
  /usr/lib/gcc/x86_64-linux-gnu/13/include/stdarg.h \

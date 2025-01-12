@@ -1,6 +1,6 @@
-CMakeFiles/snake_game.dir/src/snake.c.o: /home/maros/konecne/src/snake.c \
- /usr/include/stdc-predef.h /home/maros/konecne/src/snake.h \
- /usr/include/string.h \
+CMakeFiles/snake_game.dir/src/snake.c.o: \
+ /home/mario/snake_game/src/snake.c /usr/include/stdc-predef.h \
+ /home/mario/snake_game/src/snake.h /usr/include/string.h \
  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/features-time64.h \
  /usr/include/x86_64-linux-gnu/bits/wordsize.h \

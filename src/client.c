@@ -48,7 +48,6 @@ void init_client(const char *server_address, int port) {
     printf("Klient pripojený k %s:%d\n", server_address, port);
 }
 
-
 void start_client() {
     // ncurses init
     initscr();
@@ -104,13 +103,20 @@ void start_client() {
             mvprintw(BOARD_HEIGHT + 1 + st.num_players,
                      0, "Cas hry: %.1f s", elapsed);
 
+            if (st.paused) {
+                mvprintw(BOARD_HEIGHT+2+st.num_players, 0, "[PAUSED]");
+                if (st.countdown > 0) {
+                    // st.countdown = 3..2..1
+                    mvprintw(BOARD_HEIGHT+3+st.num_players, 0,
+                             "Resume in %d...", st.countdown);
+                }
+            }
             refresh();
         }
 
         usleep(100000);
     }
 
-    delwin(win);// Zmazanie okna
     endwin();
     if (sock >= 0) {
         close(sock);

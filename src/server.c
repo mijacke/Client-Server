@@ -68,10 +68,27 @@ static void fill_game_state(Server *server, GameState *st) {
         st->obstacles[i] = server->obstacles[i];
     }
 
+    st->start_time = server->start_time;
+
     st->game_over = 0;
 
-    // Posielame aj start_time, aby klient vedel, kedy hra začala:
-    st->start_time = server->start_time;
+    st->paused = server->paused;
+    st->countdown = 0; // default, pri bežnom stave
+}
+
+/**
+ * Pošle countdown 3..2..1 všetkým hráčom
+ *  - každú sekundu upraví st->countdown a spraví broadcast
+ */
+static void resume_countdown(Server *server) {
+    for (int c = 3; c > 0; c--) {
+        GameState st;
+        fill_game_state(server, &st);
+        st.countdown = c;         // tu nastavíme odpočet
+        broadcast_game_state(server, &st);
+        sleep(1); // počkáme 1s
+    }
+    // Po skončení countDown už st.countdown=0 => bežná hra
 }
 
 /*****************************************
@@ -85,6 +102,8 @@ void init_server(Server *server, int port, int game_mode, int game_time, int max
     server->active_players = 0;
     server->running = 1;
     server->max_players = max_players;
+
+    server->paused = 0;
 
     for (int i = 0; i < MAX_PLAYERS; i++) {
         server->players[i].active = 0;
@@ -202,7 +221,19 @@ void start_server(Server *server) {
                     case 'a':
                     case 's':
                     case 'd':
-                        server->players[i].snake.last_direction = c;
+                        if (!server->paused) {
+                            server->players[i].snake.last_direction = c;
+                        }
+                        break;
+                    case 'p':
+                        if (!server->paused) {
+                            // ideme zapnúť pauzu
+                            server->paused = 1;
+                        } else {
+                            // pauza bola, tak reštart hry => countdown
+                            resume_countdown(server);
+                            server->paused = 0;
+                        }
                         break;
                     case 'q':
                         close(sock);
@@ -216,40 +247,42 @@ void start_server(Server *server) {
             }
         }
 
-        // 3) pohyb + kolízie
-        for (int i = 0; i < MAX_PLAYERS; i++) {
-            if (!server->players[i].active) continue;
-            move_snake(&server->players[i].snake, BOARD_WIDTH, BOARD_HEIGHT);
+        if (!server->paused) {
+            // 3) pohyb + kolízie
+            for (int i = 0; i < MAX_PLAYERS; i++) {
+                if (!server->players[i].active) continue;
+                move_snake(&server->players[i].snake, BOARD_WIDTH, BOARD_HEIGHT);
 
-            // kolízia
-            int col = check_collision(&server->players[i].snake,
-                                      server->players,
-                                      MAX_PLAYERS,
-                                      BOARD_WIDTH,
-                                      BOARD_HEIGHT,
-                                      server->obstacles,
-                                      server->num_obstacles);
-            if (col) {
-                printf("Hráč %d narazil! Koniec pre neho.\n", i);
-                close(server->players[i].client_socket);
-                server->players[i].active = 0;
-                server->active_players--;
-                continue;
-            }
+                // kolízia
+                int col = check_collision(&server->players[i].snake,
+                                        server->players,
+                                        MAX_PLAYERS,
+                                        BOARD_WIDTH,
+                                        BOARD_HEIGHT,
+                                        server->obstacles,
+                                        server->num_obstacles);
+                if (col) {
+                    printf("Hráč %d narazil! Koniec pre neho.\n", i);
+                    close(server->players[i].client_socket);
+                    server->players[i].active = 0;
+                    server->active_players--;
+                    continue;
+                }
 
-            // +++ TERAZ kontrola ovocia. 
-            //  Ak je v hre X hráčov, je X ovocí
-            //  => server->active_players = count => je to toľko reálne používaných ovocí
-            //  => index 0..(active_players-1)
-            Snake *sn = &server->players[i].snake;
-            for (int f = 0; f < server->active_players; f++) {
-                if (sn->x[0] == server->fruit_x[f] &&
-                    sn->y[0] == server->fruit_y[f]) {
-                    server->players[i].score++;
-                    grow_snake(sn);
-                    // Vygeneruj nové ovocie pre index f
-                    server->fruit_x[f] = rand() % (BOARD_WIDTH - 2) + 1;
-                    server->fruit_y[f] = rand() % (BOARD_HEIGHT - 2) + 1;
+                // +++ TERAZ kontrola ovocia. 
+                //  Ak je v hre X hráčov, je X ovocí
+                //  => server->active_players = count => je to toľko reálne používaných ovocí
+                //  => index 0..(active_players-1)
+                Snake *sn = &server->players[i].snake;
+                for (int f = 0; f < server->active_players; f++) {
+                    if (sn->x[0] == server->fruit_x[f] &&
+                        sn->y[0] == server->fruit_y[f]) {
+                        server->players[i].score++;
+                        grow_snake(sn);
+                        // Vygeneruj nové ovocie pre index f
+                        server->fruit_x[f] = rand() % (BOARD_WIDTH - 2) + 1;
+                        server->fruit_y[f] = rand() % (BOARD_HEIGHT - 2) + 1;
+                    }
                 }
             }
         }
@@ -280,6 +313,7 @@ void start_server(Server *server) {
             }
         }
 
+        st.paused = server->paused;
         broadcast_game_state(server, &st);
 
         usleep(200000);

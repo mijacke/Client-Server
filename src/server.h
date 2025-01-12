@@ -37,6 +37,8 @@ typedef struct {
     // Prekážky
     Obstacle obstacles[MAX_OBSTACLES];
     int num_obstacles;
+
+    int paused;
 } Server;
 
 // Funkcie
