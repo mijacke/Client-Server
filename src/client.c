@@ -48,6 +48,7 @@ void init_client(const char *server_address, int port) {
     printf("Klient pripojený k %s:%d\n", server_address, port);
 }
 
+
 void start_client() {
     // ncurses init
     initscr();
@@ -109,6 +110,7 @@ void start_client() {
         usleep(100000);
     }
 
+    delwin(win);// Zmazanie okna
     endwin();
     if (sock >= 0) {
         close(sock);

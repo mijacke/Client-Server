@@ -1,0 +1,18 @@
+{
+   ncurses_strdup
+   Memcheck:Leak
+   fun:strdup
+   obj:/usr/lib/x86_64-linux-gnu/libtinfo.so.*
+}
+{
+   ncurses_tsearch
+   Memcheck:Leak
+   fun:tsearch
+   obj:/usr/lib/x86_64-linux-gnu/libtinfo.so.*
+}
+{
+   ncurses_calloc
+   Memcheck:Leak
+   fun:calloc
+   obj:/usr/lib/x86_64-linux-gnu/libtinfo.so.*
+}
