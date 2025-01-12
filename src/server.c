@@ -10,9 +10,6 @@
 #include <time.h>
 #include "game.h"
 
-/*****************************************
- * Pomocné funkcie
- *****************************************/
 static void set_nonblocking(int fd) {
     int flags = fcntl(fd, F_GETFL, 0);
     fcntl(fd, F_SETFL, flags | O_NONBLOCK);
@@ -84,16 +81,12 @@ static void resume_countdown(Server *server) {
     for (int c = 3; c > 0; c--) {
         GameState st;
         fill_game_state(server, &st);
-        st.countdown = c;         // tu nastavíme odpočet
+        st.countdown = c;         // tu nastavujeme odpočet
         broadcast_game_state(server, &st);
-        sleep(1); // počkáme 1s
+        sleep(1);
     }
     // Po skončení countDown už st.countdown=0 => bežná hra
 }
-
-/*****************************************
- * Verejné funkcie
- *****************************************/
 
 void init_server(Server *server, int port, int game_mode, int game_time, int max_players) {
     server->game_mode = game_mode;

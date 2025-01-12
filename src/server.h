@@ -23,7 +23,7 @@ typedef struct {
 typedef struct {
     int socket;          // serverový socket
     int game_mode;       // 1=bez prekážok, 2= s prekážkami
-    int game_time;       // ak je časový režim
+    int game_time;       // ak je časový režim (teda s prekazkami)
     time_t start_time;
     int active_players;
     int running;         // 1= beží, 0= koniec
