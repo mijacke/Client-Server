@@ -1,6 +1,0 @@
-{
-    "files.associations": {
-        "*.ejs": "html",
-        "client.h": "c"
-    }
-}
