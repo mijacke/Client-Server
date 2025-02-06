@@ -145,7 +145,7 @@ void init_server(Server *server, int port, int game_mode, int game_time, int max
         exit(1);
     }
 
-    printf("Server beží na porte %d\n", port);
+    // printf("Server beží na porte %d\n", port);
     server->socket = sock;
     set_nonblocking(server->socket);
 }

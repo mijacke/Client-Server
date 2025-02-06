@@ -141,13 +141,13 @@ void start_client() {
 
         for (int p = 0; p < st_local.num_players; p++) {
             mvprintw(BOARD_HEIGHT + 1 + p, 0,
-                     "Hráč %d | Skóre: %d", p, st_local.score[p]);
+                     "Player %d | Score: %d", p, st_local.score[p]);
         }
 
         time_t now = time(NULL);
         double elapsed = difftime(now, st_local.start_time);
         mvprintw(BOARD_HEIGHT + 1 + st_local.num_players, 0,
-                 "Čas hry: %.1f s", elapsed);
+                 "Game time: %.1f s", elapsed);
 
         // Ak je pauza, alebo odpočet
         if (st_local.paused) {
