@@ -1,1 +1,0 @@
-/usr/bin/cc CMakeFiles/snake_game.dir/src/main.c.o CMakeFiles/snake_game.dir/src/game.c.o CMakeFiles/snake_game.dir/src/renderer.c.o CMakeFiles/snake_game.dir/src/client.c.o CMakeFiles/snake_game.dir/src/server.c.o CMakeFiles/snake_game.dir/src/snake.c.o -o snake_game  -lcurses /usr/lib/x86_64-linux-gnu/libform.so 
