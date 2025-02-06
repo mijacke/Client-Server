@@ -1,1 +1,3 @@
+* linguist-detectable=true
 Makefile linguist-language=Ignore
+*.c linguist-language=C
